@@ -1,0 +1,43 @@
+{{#paper-sidenav-container class="inner-sidenav content"}}
+
+      {{#paper-sidenav
+        class="md-whiteframe-z2 content"
+        name="left"
+        open=open
+        onToggle=(action (mut open))
+      }}
+        {{#paper-toolbar as |toolbar|}}
+          {{#paper-toolbar-tools}}Ember Barista{{/paper-toolbar-tools}}
+        {{/paper-toolbar}}
+        {{#paper-content class='md-whiteframe-z1 content'}}
+          {{#paper-list}}
+            {{#each example as |item|}}
+              {{#paper-item class="md-3-line"}}
+                <div class="md-list-item-text">
+                  <h3>{{item}}</h3>
+                </div>
+              {{/paper-item}}
+              {{paper-divider}}
+            {{/each}}
+          {{/paper-list}}
+        {{/paper-content}}
+      {{/paper-sidenav}}
+
+      {{#paper-card-content class="flex"}}
+        <div class="layout-fill layout-align-start-center layout-column" style="height: 500px">
+          <p>
+            The left sidenav will "lock open" on a medium (>=960px wide) device.
+          </p>
+          <p>
+            Left sidenav is {{if open "opened" "closed"}}
+          </p>
+
+          {{#paper-sidenav-toggle name="left" class="hide-gt-sm" as |toggleAction|}}
+            {{#paper-button raised=true onClick=(action toggleAction)}}
+              Toggle
+            {{/paper-button}}
+          {{/paper-sidenav-toggle}}
+
+        </div>
+      {{/paper-card-content}}
+    {{/paper-sidenav-container}}
