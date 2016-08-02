@@ -19,6 +19,17 @@ export default Controller.extend({
       tooltip: 'Add Scenario'
     }
   ],
+  items: [
+    {
+      type: 'divider'
+    },
+    {
+      type: 'element',
+      icon: 'add',
+      label: 'test item'
+
+    }
+  ],
   actions: {
     addElement () {
        Materialize.toast('Adding element', 4000, 'bottom-left')
