@@ -10,12 +10,19 @@ $navbar-height-mobile: 40px !default;
 * {
   -webkit-font-smoothing: antialiased;
 }
+.button-collapse {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color:white;
+}
 .nav-bar {
   -webkit-app-region: drag;
   z-index:1000;
   .brand-logo {
     @media only screen and (min-width: 1200px) {
-      display: none;
+      left: 50%;
+      transform: translateX(-50%);
     }
     font-size: 20px;
   }

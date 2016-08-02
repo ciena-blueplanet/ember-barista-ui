@@ -21,10 +21,10 @@ export default Controller.extend({
   ],
   actions: {
     addElement () {
-       Materialize.toast('Adding element', 4000)
+       Materialize.toast('Adding element', 4000, 'bottom-left')
     },
     addScenario () {
-      Materialize.toast('Adding scenario', 4000)
+      Materialize.toast('Adding scenario', 4000, 'bottom-left')
 
     },
     openModal (modal) {

@@ -3,7 +3,7 @@ const {
   Component,
   $
 } = Ember
-export default Ember.Component.extend({
+export default Component.extend({
   didInsertElement() {
     $('.tooltipped').tooltip();
   },
