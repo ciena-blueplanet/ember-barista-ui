@@ -1,4 +1,22 @@
-@import 'ember-paper';
-body > .ember-view, .content {
-  height: 100%;
+// Fix for Roboto font path
+$roboto-font-path: '../assets/';
+
+// Materialize styles
+$navbar-height: 40px !default;
+$navbar-height-mobile: 40px !default;
+
+@import "materialize";
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+.nav-bar {
+  -webkit-app-region: drag;
+  z-index:1000;
+  .brand-logo {
+    @media only screen and (min-width: 1200px) {
+      display: none;
+    }
+    font-size: 20px;
+  }
 }

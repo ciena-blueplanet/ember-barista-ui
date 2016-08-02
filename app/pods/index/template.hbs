@@ -1,0 +1,19 @@
+<nav class='nav-bar'>
+   <div class="nav-wrapper teal lighten-2">
+     <a href="#" class="brand-logo">Ember Barista</a>
+   </div>
+</nav>
+{{side-nav}}
+<a {{action 'toggle'}} href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+{{menu-items buttons=buttons}}
+
+<div id="addModal" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>

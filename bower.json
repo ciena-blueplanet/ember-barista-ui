@@ -9,6 +9,7 @@
     "matchMedia": "0.2.0",
     "mocha": "~2.2.4",
     "chai": "~2.3.0",
-    "ember-mocha-adapter": "~0.3.1"
+    "ember-mocha-adapter": "~0.3.1",
+    "materialize": "0.97.6"
   }
 }
