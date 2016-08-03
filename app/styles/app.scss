@@ -6,7 +6,9 @@ $navbar-height: 40px !default;
 $navbar-height-mobile: 40px !default;
 
 @import "materialize";
-
+html, .ember-application, body > .ember-view, .content {
+  height: 100%;
+}
 * {
   -webkit-font-smoothing: antialiased;
 }
@@ -29,4 +31,20 @@ $navbar-height-mobile: 40px !default;
 }
 .middle {
   vertical-align: middle;
+}
+.sidebar {
+  z-index:100;
+}
+.page {
+  background: #F2EFEC;
+}
+
+.resize {
+  resize: horizontal;
+
+  .horizontal {
+  }
+  &.vertical {
+    resize: vertical;
+  }
 }

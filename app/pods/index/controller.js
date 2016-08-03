@@ -25,17 +25,21 @@ export default Controller.extend({
     },
     {
       type: 'element',
-      icon: 'add',
-      label: 'test item'
-
+      icon: 'settings',
+      label: 'Settings'
+    },
+    {
+      type: 'element',
+      icon: 'info',
+      label: 'About'
     }
   ],
   actions: {
     addElement () {
-       Materialize.toast('Adding element', 4000, 'bottom-left')
+       Materialize.toast('Adding element', 4000)
     },
     addScenario () {
-      Materialize.toast('Adding scenario', 4000, 'bottom-left')
+      Materialize.toast('Adding scenario', 4000)
 
     },
     openModal (modal) {
