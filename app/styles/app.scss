@@ -9,16 +9,28 @@ $navbar-height-mobile: 40px !default;
 html, .ember-application, body > .ember-view, .content {
   height: 100%;
 }
+input[type=text]:focus:not([readonly]) {
+  border-bottom: initial;
+  box-shadow: initial;
+}
+.row {
+  padding-top: $navbar-height;
+}
 * {
   -webkit-font-smoothing: antialiased;
 }
 .button-collapse {
   position: absolute;
+  z-index:9999;
   top: 8px;
   right: 10px;
   color:white;
+  & i {
+    cursor: pointer;
+  }
 }
 .nav-bar {
+  position: fixed;
   -webkit-app-region: drag;
   z-index:1000;
   .brand-logo {
@@ -36,7 +48,7 @@ html, .ember-application, body > .ember-view, .content {
   z-index:100;
 }
 .page {
-  background: #F2EFEC;
+
 }
 
 .resize {
@@ -46,5 +58,12 @@ html, .ember-application, body > .ember-view, .content {
   }
   &.vertical {
     resize: vertical;
+  }
+}
+.collection-item {
+  input {
+    border-bottom: initial;
+    height: initial;
+    margin: initial;
   }
 }

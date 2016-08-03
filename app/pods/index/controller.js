@@ -5,7 +5,8 @@ const {
 } = Ember
 
 export default Controller.extend({
-  buttons: [
+  els: Ember.A(),
+  menu_buttons: [
     {
       action: 'addElement',
       color: 'cyan',
@@ -19,7 +20,7 @@ export default Controller.extend({
       tooltip: 'Add Scenario'
     }
   ],
-  items: [
+  sidenav: [
     {
       type: 'divider'
     },
@@ -34,6 +35,7 @@ export default Controller.extend({
       label: 'About'
     }
   ],
+  elements: Ember.computed.alias('model.elements'),
   actions: {
     addElement () {
        Materialize.toast('Adding element', 4000)
@@ -44,6 +46,10 @@ export default Controller.extend({
     },
     openModal (modal) {
       $(`#${modal}`).openModal()
+    },
+    change (e) {
+      Materialize.toast(`Selected ${e[0].label}`, 4000)
+      this.get('els').pushObject(e[0])
     }
   }
 })
