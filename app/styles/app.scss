@@ -61,6 +61,14 @@ input[type=text]:focus:not([readonly]) {
   }
 }
 .collection-item {
+  position: relative;
+  i {
+    position: absolute; right: 10px; top: 10px;
+    cursor: pointer;
+    &:hover {
+      color: red;
+    }
+  }
   input {
     border-bottom: initial;
     height: initial;

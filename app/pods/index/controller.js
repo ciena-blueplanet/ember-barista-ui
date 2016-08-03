@@ -49,7 +49,8 @@ export default Controller.extend({
     },
     change (e) {
       Materialize.toast(`Selected ${e[0].label}`, 4000)
-      this.get('els').pushObject(e[0])
+      if (!this.get('els').contains(e[0]))
+        this.get('els').pushObject(e[0])
     }
   }
 })

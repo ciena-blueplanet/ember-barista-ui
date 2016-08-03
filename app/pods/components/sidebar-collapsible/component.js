@@ -7,9 +7,12 @@ export default Ember.Component.extend({
     });
   },
   actions: {
-    addProperty (props, name) {
-      const property = props.findBy('isFocused', true)
-      property.setProperties({
+    delete (props, prop) {
+      props.removeObject(prop)
+    },
+    addProperty (props, current, name) {
+      if (!name) return;
+      current.setProperties({
         name,
         isFocused: false
       })

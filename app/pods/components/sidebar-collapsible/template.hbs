@@ -4,12 +4,15 @@
       <div class="collapsible-header"><i class="material-icons">{{e.icon}}</i>{{e.label}}</div>
       <div class="collapsible-body">
         <ul class="collection">
-          {{#each e.properties as |property|}}
+          {{#each e.properties as |property index|}}
             <li class="collection-item">
               {{spawning-input
                 isFocused=property.isFocused
-                onEnter=(action 'addProperty' e.properties)
+                onEnter=(action 'addProperty' e.properties property)
               }}
+              {{#if (gt index 0)}}
+                <i {{action 'delete' e.properties property}} class="material-icons">delete</i>
+              {{/if}}
             </li>
         {{/each}}
       </ul>
