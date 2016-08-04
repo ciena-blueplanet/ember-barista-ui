@@ -106,5 +106,8 @@
       "ProductName": null,
       "InternalName": null
     }
+  },
+  "dependencies": {
+    "ember-cli-materialize": "^0.22.0-beta.0"
   }
 }

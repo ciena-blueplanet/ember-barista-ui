@@ -6,33 +6,25 @@
 <a {{action 'toggle'}} href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 
 {{side-nav items=sidenav}}
-{{menu-items buttons=menu_buttons}}
 <div class='row content'>
   <div class='col s4 sidebar content resize horizontal' >
     <div class='card content'>
-      {{frost-select
+      <!-- {{frost-select
         class='col s12'
         data=elements
         onChange=(action 'change')
-      }}
-      {{sidebar-collapsible els=els}}
+      }} -->
+      {{sidebar-list elements=elements}}
+      <!-- {{sidebar-collapsible els=els}} -->
     </div>
   </div>
   <div class='col s8 page content'>
     <div class='card content'>
-      <h4>Scenarios</h4>
+      {{menu-items buttons=menu_buttons}}
     </div>
   </div>
 </div>
 
 
 <!-- Modals -->
-<div id="addModal" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
+{{scenario-modal content=els}}

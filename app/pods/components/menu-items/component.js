@@ -4,9 +4,6 @@ const {
   $
 } = Ember
 export default Component.extend({
-  didInsertElement() {
-    $('.tooltipped').tooltip();
-  },
   actions: {
     handleAction (action) {
       let args = [].slice.call(arguments,1)

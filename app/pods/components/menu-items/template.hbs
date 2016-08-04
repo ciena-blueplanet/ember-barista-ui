@@ -1,22 +1,10 @@
 <div class="fixed-action-btn vertical" style="bottom: 10px; right: 10px;">
-  <a {{action 'handleAction' 'openModal' 'addModal'}} class="btn-floating btn-large teal lighten-2">
+  <a
+    {{action 'handleAction' 'openModal' 'addScenario'}}
+    class="btn-floating btn-large teal lighten-2"
+  >
     <i class="large material-icons">add</i>
   </a>
-  <ul>
-    {{#each buttons as |button|}}
-      <li>
-        <a
-          {{action 'handleAction' button.action}}
-          class="btn-floating {{button.color}} tooltipped"
-          data-delay="50"
-          data-position="left"
-          data-tooltip="{{button.tooltip}}"
-        >
-          <i class="material-icons">{{button.icon}}</i>
-        </a>
-      </li>
-    {{/each}}
-  </ul>
 
 </div>
 

@@ -5,7 +5,8 @@ const {
 
 export default Component.extend({
   didInsertElement () {
-    if (this.get('isFocused'))
-      this.$('input').focus()
+    this.$('input').focus()
+    $('select').material_select();
+
   }
 });

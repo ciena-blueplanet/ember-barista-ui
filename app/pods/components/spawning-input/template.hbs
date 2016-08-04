@@ -1,5 +1,18 @@
+<div class='row'>
 {{input
-  type='text'
+    type='text'
+  placeholder='Name'
+  class='col s4'
   value=name
   enter=(action onEnter name)
  }}
+ <div class="input-field col s6">
+   <select>
+     <option value="" disabled selected>Type</option>
+     <option value="TextField">TextField</option>
+     <option value="Button">Button</option>
+     <option value="Checkbox">Checkbox</option>
+   </select>
+   <label>Type</label>
+ </div>
+</div>

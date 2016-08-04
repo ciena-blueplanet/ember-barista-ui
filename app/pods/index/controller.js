@@ -46,6 +46,7 @@ export default Controller.extend({
     },
     openModal (modal) {
       $(`#${modal}`).openModal()
+      $(`#${modal} select`).material_select();
     },
     change (e) {
       Materialize.toast(`Selected ${e[0].label}`, 4000)

@@ -9,6 +9,8 @@ export default Component.extend({
   classNames: ['side-nav'],
   didInsertElement () {
     this.element.id = 'slide-out'
-    $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav({
+      edge: 'right'
+    });
   }
 });
