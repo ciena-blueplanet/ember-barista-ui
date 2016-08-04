@@ -12,6 +12,7 @@ export default Ember.Component.extend({
     add (elements) {
       elements.pushObject(Ember.Object.create({
         label: '',
+        type: '',
         properties: Ember.A(),
         icon: 'add'
       }))
