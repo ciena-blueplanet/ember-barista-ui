@@ -7,8 +7,9 @@ const {
 export default Component.extend({
   tagName: 'ul',
   classNames: ['side-nav'],
+  id: 'slide-out',
+  attributeBindings: ['id'],
   didInsertElement () {
-    this.element.id = 'slide-out'
     $(".button-collapse").sideNav({
       edge: 'right'
     });

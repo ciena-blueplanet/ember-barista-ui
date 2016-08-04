@@ -10,19 +10,16 @@ export default Route.extend({
     return RSVP.hash({
       elements: new RSVP.Promise((resolve, reject) => {
         resolve(['Button', 'Text Field', 'Link', "Etc"].map(e => {
-          return {
+          return Ember.Object.create({
             label: e,
-            value: {
-              label: e,
-              properties: Ember.A([Ember.Object.create({ name: '', isFocused: true })]),
-              icon: {
-                'Text Field': 'input',
-                'Button': 'explicit',
-                'Link': 'web',
-                "Etc": 'snooze'
-              }[e]
-            }
-          }
+            properties: Ember.A(),
+            icon: {
+              'Text Field': 'input',
+              'Button': 'explicit',
+              'Link': 'web',
+              "Etc": 'snooze'
+            }[e]
+          })
         }))
       })
     })

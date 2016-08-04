@@ -52,7 +52,9 @@ body > .ember-view > .row {
   z-index:100;
 }
 .card {
-  overflow: scroll;
+  .collection {
+    overflow: scroll;
+  }
   position: relative;
   .fixed-action-btn {
     position: absolute;
@@ -62,12 +64,31 @@ body > .ember-view > .row {
 .collection-item {
   position: relative;
   i {
-    position: absolute; right: 10px; top: 10px;
-    cursor: pointer;
-    &:hover {
-      color: red;
-    }
+    top: 50%;
+    transform: translateY(-50%);
   }
+  .options {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    a {
+      position: relative;
+      i {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+        opacity: 0.2;
+        transition: opacity 0.2s ease;
+        &:hover {
+          opacity: 1;
+          color: black;
+        }
+      }
+    }
+
+  }
+
   input {
     border-bottom: initial;
   }
@@ -82,4 +103,16 @@ body > .ember-view > .row {
 }
 .half {
   width: 30% !important;
+}
+
+.md-select {
+  .red-text {
+    display: none;
+  }
+}
+.row {
+  margin-bottom: initial;
+  .input-field {
+    margin-top: initial;
+  }
 }

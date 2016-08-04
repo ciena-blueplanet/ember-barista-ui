@@ -1,15 +1,19 @@
 {{#each elements as |el|}}
  <li class="collection-item avatar">
-   <i class="material-icons circle">{{el.value.icon}}</i>
+   {{log el}}
+   <i class="material-icons circle">{{el.icon}}</i>
    <span class="title">
      {{spawning-input
        isFocused=property.isFocused
-       onEnter=(action 'addProperty' elements)
+       value=el.label
+       onEnter=(action 'add' elements)
+       onChange=(action 'updateElement' el)
      }}
    </span>
-   <a {{action 'favourite'}} href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-   <a {{action 'add'}} href="#!" class="secondary-content"><i class="material-icons">queue</i></a>
-
+   <div class='options'>
+     <a {{action 'edit'}} href="#!" class="secondary-content" style='position: absolute; top:5px; right 0;'><i class="material-icons">mode_edit</i></a>
+     <a {{action 'add' elements}} href="#!" class="secondary-content" style='position: absolute; top:35px; right 0;'><i class="material-icons">queue</i></a>
+   </div>
  </li>
 {{/each}}
 {{yield}}

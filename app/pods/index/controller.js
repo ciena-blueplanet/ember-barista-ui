@@ -5,7 +5,6 @@ const {
 } = Ember
 
 export default Controller.extend({
-  els: Ember.A(),
   menu_buttons: [
     {
       action: 'addElement',

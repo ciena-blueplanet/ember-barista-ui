@@ -1,18 +1,16 @@
 <div class='row'>
 {{input
-    type='text'
+  type='text'
   placeholder='Name'
   class='col s4'
-  value=name
-  enter=(action onEnter name)
+  value=value
+  enter=(action onEnter value)
+  change=(action onChange 'label' value)
  }}
- <div class="input-field col s6">
-   <select>
-     <option value="" disabled selected>Type</option>
-     <option value="TextField">TextField</option>
-     <option value="Button">Button</option>
-     <option value="Checkbox">Checkbox</option>
-   </select>
-   <label>Type</label>
- </div>
+   {{md-select content=types
+    value=type
+    change=(action onChange 'type' type)
+    prompt="Type"
+    optionLabelPath="content"
+    optionValuePath="content" class="col s6"}}
 </div>

@@ -4,13 +4,18 @@ export default Ember.Component.extend({
   tagName: 'ul',
   classNames: ['collection sidebar-list'],
   actions: {
-    addProperty (elements, name) {
-      if (!name) return;
-      elements.pushObject({
-        value: {
-          icon: 'queue'
-        }
-      })
-    }
+    updateElement (element, type, value) {
+      console.log(type, value)
+      element.set(type, value)
+      console.log(this.get('elements'))
+    },
+    add (elements) {
+      elements.pushObject(Ember.Object.create({
+        label: '',
+        properties: Ember.A(),
+        icon: 'add'
+      }))
+    },
+    edit () {}
   }
 });
