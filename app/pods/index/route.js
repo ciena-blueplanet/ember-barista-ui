@@ -1,0 +1,28 @@
+import Ember from 'ember'
+
+const {
+  Route,
+  RSVP
+} = Ember
+
+export default Route.extend({
+  model () {
+    return RSVP.hash({
+      elements: new RSVP.Promise((resolve, reject) => {
+        resolve(['Button', 'Textfield', 'Link', "Page"].map(e => {
+          return Ember.Object.create({
+            label: e,
+            properties: Ember.A(),
+            type: e,
+            icon: {
+              'Textfield': 'input',
+              'Button': 'explicit',
+              'Link': 'web',
+              "Page": 'snooze'
+            }[e]
+          })
+        }))
+      })
+    })
+  }
+})

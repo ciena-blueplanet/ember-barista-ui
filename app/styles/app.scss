@@ -1,0 +1,118 @@
+// Fix for Roboto font path
+$roboto-font-path: '../assets/';
+
+// Materialize styles
+$navbar-height: 40px !default;
+$navbar-height-mobile: 40px !default;
+
+@import "materialize";
+html, .ember-application, body > .ember-view {
+  height: calc(100% - 12px);
+}
+.content, .sidebar-list {
+  height: 100%;
+}
+input[type=text]:focus:not([readonly]) {
+  border-bottom: initial;
+  box-shadow: initial;
+}
+body > .ember-view > .row {
+  padding-top: $navbar-height;
+}
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+.button-collapse {
+  position: fixed;
+  z-index:9999;
+  top: 8px;
+  right: 10px;
+  color:white;
+  & i {
+    cursor: pointer;
+  }
+}
+.nav-bar {
+  position: fixed;
+  -webkit-app-region: drag;
+  z-index:1000;
+  .brand-logo {
+    @media only screen and (min-width: 1200px) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    font-size: 20px;
+  }
+}
+.middle {
+  vertical-align: middle;
+}
+.sidebar {
+  z-index:100;
+}
+.card {
+  .collection {
+    overflow: scroll;
+  }
+  position: relative;
+  .fixed-action-btn {
+    position: absolute;
+  }
+}
+
+.collection-item {
+  position: relative;
+  i {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .options {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    a {
+      position: relative;
+      i {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+        opacity: 0.2;
+        transition: opacity 0.2s ease;
+        &:hover {
+          opacity: 1;
+          color: black;
+        }
+      }
+    }
+
+  }
+
+  input {
+    border-bottom: initial;
+  }
+}
+.modal {
+  height: 80%;
+  width: 80%;
+  & .modal-footer {
+    position: absolute;
+    bottom: 0;
+  }
+}
+.half {
+  width: 30% !important;
+}
+
+.md-select {
+  .red-text {
+    display: none;
+  }
+}
+.row {
+  margin-bottom: initial;
+  .input-field {
+    margin-top: initial;
+  }
+}

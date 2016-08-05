@@ -1,0 +1,27 @@
+<ul class="collapsible popout col s12" data-collapsible="accordion">
+  {{#each els as |e|}}
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">{{e.icon}}</i>{{e.label}}
+        <i style='float:right; opacity: 0.4; fill: green' class="material-icons">queue</i>
+      </div>
+      <div class="collapsible-body">
+        <ul class="collection">
+          {{#each e.properties as |property index|}}
+            <li class="collection-item">
+              {{spawning-input
+                isFocused=property.isFocused
+                onEnter=(action 'addProperty' e.properties property)
+              }}
+              {{#if (gt index 0)}}
+                <i {{action 'delete' e.properties property}} class="material-icons">delete</i>
+              {{/if}}
+            </li>
+        {{/each}}
+      </ul>
+
+      </div>
+    </li>
+  {{/each}}
+</ul>
+{{yield}}

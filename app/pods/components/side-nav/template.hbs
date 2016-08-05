@@ -1,0 +1,18 @@
+<li>
+   <h4 style='text-align: center; padding-top: 30px;'>Barista</h4>
+</li>
+{{#each items as |item|}}
+  {{#if (eq item.type 'divider')}}
+    <li><div class="divider"></div></li>
+  {{else}}
+    <li>
+      <a href="#" class='waves-effect'>
+        <i class="middle {{if item.icon 'material-icons'}}">
+          {{item.icon}}
+        </i>
+        {{item.label}}
+      </a>
+    </li>
+  {{/if}}
+{{/each}}
+{{yield}}

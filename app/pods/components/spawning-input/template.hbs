@@ -1,0 +1,16 @@
+<div class='row'>
+{{input
+  type='text'
+  placeholder='Name'
+  class='col s4'
+  value=value
+  enter=(action onEnter value)
+  change=(action onChange 'label' value)
+ }}
+   {{md-select content=types
+    value=type
+    change=(action onChange 'type' type)
+    prompt="Type"
+    optionLabelPath="content"
+    optionValuePath="content" class="col s6"}}
+</div>
