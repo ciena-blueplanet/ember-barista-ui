@@ -19,11 +19,12 @@
     </div>
   </div>
   <div class='col s8 page content'>
-    <div class='card content'>
+    <div class='card content scrollable'>
       {{#each scenarios as |scenario|}}
-        {{scenario-card values=elements scenario=scenario}}
+        {{scenario-card elements=elements scenario=scenario}}
       {{/each}}
     </div>
+    {{menu-items}}
   </div>
 </div>
 

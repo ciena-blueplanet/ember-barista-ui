@@ -15,7 +15,7 @@ export default Route.extend({
             properties: Ember.A(),
             type: e,
             icon: {
-              'Textfield': 'input',
+              'Text Field': 'input',
               'Button': 'explicit',
               'Link': 'web',
               "Page": 'snooze'

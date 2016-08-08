@@ -42,16 +42,11 @@ export default Controller.extend({
   ],
   elements: Ember.computed.alias('model.elements'),
   actions: {
-    addElement () {
-       Materialize.toast('Adding element', 4000)
-    },
     addScenario () {
-      Materialize.toast('Adding scenario', 4000)
-
-    },
-    openModal (modal) {
-      $(`#${modal}`).openModal()
-      $(`#${modal} select`).material_select();
+      this.get('scenarios').pushObject({
+        name: 'New Scenario',
+        elements: Ember.A()
+      })
     },
     change (e) {
       Materialize.toast(`Selected ${e[0].label}`, 4000)
