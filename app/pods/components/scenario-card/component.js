@@ -9,8 +9,8 @@ export default Ember.Component.extend({
   ],
   actions: {
     tributeReplaced (e) {
-      let details = e.details;
-      this.get('scenario.elements').push(details)
+      console.log(e);
+      this.get('scenario.elements').pushObject(e.detail)
     }
   }
 });

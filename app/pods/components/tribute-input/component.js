@@ -5,14 +5,13 @@ const {
 } = Ember
 
 export default Component.extend({
-  tagName: 'input',
-  type: 'text',
+  tagName: 'div',
   classNames: [
     'tribute-input'
   ],
+  contenteditable: true,
   attributeBindings: [
-    'type',
-    'placeholder'
+    'contenteditable'
   ],
   tribute: null,
   redraw: function () {
@@ -27,11 +26,16 @@ export default Component.extend({
         value: e.label
       }
     })
-
   }),
   didInsertElement () {
     let tribute = new Tribute({
-      values: this.get('content')
+      values: this.get('content'),
+      selectTemplate (item) {
+        return `<div class='chip' contenteditable='false'>` +
+          `${item.string}` +
+          `<i onclick='delete this.parentElement' class="material-icons close">close</i>` +
+          `</div>`
+      }
     })
     tribute.attach(this.get('element'))
     this.set('tribute', tribute)

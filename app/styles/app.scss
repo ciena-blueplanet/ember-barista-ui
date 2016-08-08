@@ -120,8 +120,8 @@ body > .ember-view > .row {
   }
 }
 .scenario {
-  height: 300px;
-  width: 300px;
+  height: 400px;
+  width: 400px;
   margin: 10px;
 }
 input {
@@ -132,4 +132,12 @@ input {
 }
 .is-dragging {
   z-index: 9999;
+}
+.tribute-input {
+  padding: 2px;
+  height:30%;
+  overflow:scroll;
+  &:focus {
+    outline: none;
+  }
 }
