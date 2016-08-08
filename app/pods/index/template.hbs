@@ -20,7 +20,9 @@
   </div>
   <div class='col s8 page content'>
     <div class='card content'>
-      {{menu-items buttons=menu_buttons}}
+      {{#each scenarios as |scenario|}}
+        {{scenario-card values=elements scenario=scenario}}
+      {{/each}}
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ module.exports = function(defaults) {
       ]
     }
   });
-
+  app.import('bower_components/tribute/dist/tribute.js')
+  app.import('bower_components/tribute/dist/tribute.css')
   return app.toTree();
 };

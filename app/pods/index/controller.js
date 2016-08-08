@@ -5,6 +5,12 @@ const {
 } = Ember
 
 export default Controller.extend({
+  scenarios: [
+    {
+      name: 'My Scenario',
+      elements: Ember.A()
+    }
+  ],
   menu_buttons: [
     {
       action: 'addElement',

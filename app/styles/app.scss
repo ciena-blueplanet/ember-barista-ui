@@ -88,10 +88,6 @@ body > .ember-view > .row {
     }
 
   }
-
-  input {
-    border-bottom: initial;
-  }
 }
 .modal {
   height: 80%;
@@ -115,4 +111,12 @@ body > .ember-view > .row {
   .input-field {
     margin-top: initial;
   }
+}
+.scenario {
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+}
+input {
+  border-bottom: initial !important;
 }
