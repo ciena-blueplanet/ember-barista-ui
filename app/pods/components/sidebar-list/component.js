@@ -1,12 +1,13 @@
 import Ember from 'ember';
 
 const {
-  Component
+  Component,
+  run
 } = Ember
 
 export default Component.extend({
-  tagName: 'ul',
-  classNames: ['collection sidebar-list'],
+  tagName: 'div',
+  classNames: ['content'],
   actions: {
     updateElement (element, type, value) {
       element.set(type, value)
@@ -14,13 +15,17 @@ export default Component.extend({
     },
     add (elements) {
       elements.pushObject(Ember.Object.create({
-        label: '',
+        label: 'New Element',
         type: '',
         properties: Ember.A(),
         icon: 'add'
       }))
-      this.set('elements', elements)
     },
-    edit () {}
+    delete (elements, el) {
+        this.set('elements', elements.removeObject(el))
+    },
+    reorderItems(elements, dragged) {
+      this.set('elements', elements)
+   }
   }
 });

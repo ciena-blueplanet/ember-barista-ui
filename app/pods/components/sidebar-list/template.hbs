@@ -1,20 +1,23 @@
-{{#each elements as |el|}}
- <li class="collection-item avatar">
-   {{log el}}
-   <i class="material-icons circle">{{el.icon}}</i>
-   <span class="title">
-     {{spawning-input
-       isFocused=property.isFocused
-       value=el.label
-       type=el.type
-       onEnter=(action 'add' elements)
-       onChange=(action 'updateElement' el)
-     }}
-   </span>
-   <div class='options'>
-     <a {{action 'edit'}} href="#!" class="secondary-content" style='position: absolute; top:5px; right 0;'><i class="material-icons">mode_edit</i></a>
-     <a {{action 'add' elements}} href="#!" class="secondary-content" style='position: absolute; top:35px; right 0;'><i class="material-icons">queue</i></a>
-   </div>
- </li>
-{{/each}}
+{{#sortable-group class='collection content' tagName="ul" onChange="reorderItems" as |group|}}
+  {{#each elements as |el i|}}
+    {{#sortable-item tagName="li" class='collection-item avatar' model=el group=group handle=".handle"}}
+      <i class="material-icons circle">{{el.icon}}</i>
+      <span class="title">
+        {{spawning-input
+          isFocused=property.isFocused
+          value=el.label
+          type=el.type
+          onEnter=(action 'add' elements)
+          onChange=(action 'updateElement' el)
+        }}
+      </span>
+      <div class='options'>
+        <a {{action 'delete' elements el}} href="#!" class="secondary-content" style='position: absolute; top:5px; right 0;'><i class="material-icons">delete</i></a>
+        <a {{action 'add' elements}} href="#!" class="secondary-content" style='position: absolute; top:35px; right 0;'><i class="material-icons">queue</i></a>
+      </div>
+      <span class="handle">&varr;</span>
+    {{/sortable-item}}
+  {{/each}}
+{{/sortable-group}}
+
 {{yield}}

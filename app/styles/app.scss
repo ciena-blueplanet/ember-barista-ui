@@ -67,6 +67,13 @@ body > .ember-view > .row {
     top: 50%;
     transform: translateY(-50%);
   }
+  .handle {
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    top:50%;
+    transform: translateY(-50%);
+  }
   .options {
     position: absolute;
     top: 10px;
@@ -122,4 +129,7 @@ input {
 }
 .scrollable {
   overflow: scroll;
+}
+.is-dragging {
+  z-index: 9999;
 }

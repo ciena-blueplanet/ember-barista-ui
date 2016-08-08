@@ -1,6 +1,10 @@
 import Ember from 'ember';
+const {
+  Component,
+  run
+} = Ember
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'input',
   type: 'text',
   classNames: [
@@ -12,22 +16,25 @@ export default Ember.Component.extend({
   ],
   tribute: null,
   redraw: function () {
-    this.get('element').removeAttribute('data-tribute')
+    run.schedule('sync', this, function () {
+      this.get('tribute').collection[0].values = this.get('content')
+    })
+  }.observes('content'),
+  content: Ember.computed('elements.[]', function () {
+    return this.get('elements').map(e => {
+      return {
+        key: e.label,
+        value: e.label
+      }
+    })
 
+  }),
+  didInsertElement () {
     let tribute = new Tribute({
       values: this.get('content')
     })
     tribute.attach(this.get('element'))
-  }.observes('content'),
-
-  content: Ember.computed.map('elements.@each', function (e) {
-    return {
-      key: e.label,
-      value: e.label
-    }
-  }),
-  
-  didInsertElement () {
+    this.set('tribute', tribute)
     this.redraw()
     this.get('element').addEventListener('tribute-replaced', (e) => {
       this.get('targetObject').send('tributeReplaced', e)
