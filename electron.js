@@ -3,6 +3,7 @@
 
 const electron = require('electron')
 const path = require('path')
+
 const {
   ipcMain
 } = electron
@@ -16,7 +17,7 @@ const location = `file://${dirname}/dist/index.html`
 
 let mainWindow = null
 
-app.on('window-all-closed', function onWindowAllClosed () {
+app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit()
   }
@@ -34,24 +35,20 @@ app.on('ready', function onReady () {
 
   delete mainWindow.module
 
-  mainWindow.openDevTools();
-
   mainWindow.loadURL(location)
 
-  // If a loading operation goes wrong, we'll send Electron back to
-  // Ember App entry point
-  mainWindow.webContents.on('did-fail-load', () => {
+  mainWindow.webContents.on('did-fail-load', function () {
     mainWindow.loadURL(location)
   })
 
-  mainWindow.on('closed', () => {
+  mainWindow.on('closed', function () {
     mainWindow = null
   })
 
-  process.on('uncaughtException', (err) => {
+  process.on('uncaughtException', function (err) {
     console.log(`Exception: ${err}`)
   })
-  ipcMain.on('publish', function () {
-    console.log(...arguments)
+  ipcMain.on('publish', function (event, scenarios) {
+    console.log(scenarios)
   })
 })

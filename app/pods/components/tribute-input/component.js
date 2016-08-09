@@ -2,7 +2,8 @@ import Ember from 'ember';
 import ContentEditable from 'ember-content-editable/components/content-editable';
 const {
   Component,
-  run
+  run,
+  $
 } = Ember
 
 export default ContentEditable.extend({
@@ -23,12 +24,16 @@ export default ContentEditable.extend({
       }
     })
   }),
+  focusOut () {
+    this.get('targetObject').send('focusOut', $(this.get('element')).text())
+  },
   didInsertElement () {
     let tribute = new Tribute({
       values: this.get('content'),
       selectTemplate (item) {
-        return `<div class='chip' data-value="${item.string}" contenteditable='false'>` +
-          `"${item.string}"` +
+        let v = item.original.value
+        return `<div class='chip' data-value="${v}" contenteditable='false'>` +
+          `"${v}"` +
           `<i onclick='delete this.parentElement' class="material-icons">close</i>` +
           `</div>`
       }

@@ -16,8 +16,11 @@
     <div class='card content scrollable'>
       <ul class='collection'>
       {{#each scenarios as |scenario|}}
-        {{scenario-card elements=elements scenario=scenario}}
+        {{scenario-item elements=elements scenario=scenario}}
       {{/each}}
+      <li {{action 'add' elements}}class='scenario collection-item dashed last'>
+        <a href="#!"><i class="material-icons medium">add</i></a>
+      </li>
     </ul>
     </div>
     {{menu-items}}

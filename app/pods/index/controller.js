@@ -58,6 +58,12 @@ export default Controller.extend({
     },
     publish () {
       this.get('ipc').send('publish', this.get('scenarios'))
+    },
+    add () {
+      this.get('scenarios').pushObject({
+        name: 'New Scenario',
+        elements: Ember.A()
+      })
     }
   }
 })

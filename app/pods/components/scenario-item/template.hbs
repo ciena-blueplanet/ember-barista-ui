@@ -1,0 +1,16 @@
+<div class='row' style='padding-top: 5px;'>
+<div class="input-field col s6">
+  {{input placeholder='Scenario Name' value=name type='text' focus-out=(action 'valueChanged')}}
+</div>
+<div class='divider col s12'></div>
+</div>
+<div class='row'>
+  {{tribute-input
+    class='col s12 content'
+    elements=elements
+    value=value
+    tributeReplaced=(action 'tributeReplaced')
+    placeholder='Describe'
+  }}
+</div>
+{{yield}}

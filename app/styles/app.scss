@@ -12,10 +12,7 @@ html, .ember-application, body > .ember-view {
 .content, .sidebar-list {
   height: 100%;
 }
-input[type=text]:focus:not([readonly]) {
-  border-bottom: initial;
-  box-shadow: initial;
-}
+
 body > .ember-view > .row {
   padding-top: $navbar-height;
 }
@@ -51,9 +48,6 @@ body > .ember-view > .row {
 .middle {
   vertical-align: middle;
 }
-.sidebar {
-  z-index:100;
-}
 .card {
   .collection {
     overflow: scroll;
@@ -64,6 +58,15 @@ body > .ember-view > .row {
   }
 }
 .sidebar {
+  z-index:100;
+
+  input {
+    border-bottom: initial !important;
+  }
+  input[type=text]:focus:not([readonly]) {
+    border-bottom: initial;
+    box-shadow: initial;
+  }
   .collection-item {
     position: relative;
     i {
@@ -126,12 +129,13 @@ body > .ember-view > .row {
   }
 }
 .scenario {
+  .input-field label {
+    top: 1.2rem;
+  }
   height: 150px;
   border-bottom: black solid 1px;
 }
-input {
-  border-bottom: initial !important;
-}
+
 .scrollable {
   overflow: scroll;
 }
@@ -139,8 +143,8 @@ input {
   z-index: 9999;
 }
 .tribute-input {
-  padding: 2px;
-  height:30%;
+  padding-top: 10px !important;
+  height:100%;
   overflow:scroll;
   &:focus {
     outline: none;
@@ -154,8 +158,9 @@ input {
   border-top: none;
   opacity: 0.6;
   border-bottom: dashed thin #e0e0e0 !important;
+  cursor: pointer;
+
   .material-icons {
-    cursor: pointer;
     position: absolute;
     opacity: 0.3;
     top: 50%;
@@ -169,4 +174,7 @@ input {
       opacity: 0.7;
     }
   }
+}
+.last {
+  padding-top:20px;
 }
