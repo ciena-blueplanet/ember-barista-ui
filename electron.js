@@ -3,14 +3,16 @@
 
 const electron = require('electron')
 const path = require('path')
-
+const {
+  ipcMain
+} = electron
 const {
   app,
   BrowserWindow
 } = electron
 
 const dirname = __dirname || path.resolve(path.dirname())
-const emberAppLocation = `file://${dirname}/dist/index.html`
+const location = `file://${dirname}/dist/index.html`
 
 let mainWindow = null
 
@@ -22,10 +24,10 @@ app.on('window-all-closed', function onWindowAllClosed () {
 
 app.on('ready', function onReady () {
   mainWindow = new BrowserWindow({
-    width: 900,
+    width: 1000,
     minWidth: 900,
-    height: 900,
-    minHeight: 900,
+    height: 800,
+    minHeight: 800,
     title: 'Ember Barista',
     titleBarStyle: process.platform === 'darwin' ? 'hidden-inset' : ''
   })
@@ -34,25 +36,12 @@ app.on('ready', function onReady () {
 
   mainWindow.openDevTools();
 
-  mainWindow.loadURL(emberAppLocation)
+  mainWindow.loadURL(location)
 
   // If a loading operation goes wrong, we'll send Electron back to
   // Ember App entry point
   mainWindow.webContents.on('did-fail-load', () => {
-    mainWindow.loadURL(emberAppLocation)
-  })
-
-  mainWindow.webContents.on('crashed', () => {
-    console.log('Your Ember app (or other code) in the main window has crashed.')
-    console.log('This is a serious issue that needs to be handled and/or debugged.')
-  })
-
-  mainWindow.on('unresponsive', () => {
-    console.log('Your Ember app (or other code) has made the window unresponsive.')
-  })
-
-  mainWindow.on('responsive', () => {
-    console.log('The main window has become responsive again.')
+    mainWindow.loadURL(location)
   })
 
   mainWindow.on('closed', () => {
@@ -60,8 +49,9 @@ app.on('ready', function onReady () {
   })
 
   process.on('uncaughtException', (err) => {
-    console.log('An exception in the main thread was not handled.')
-    console.log('This is a serious issue that needs to be handled and/or debugged.')
     console.log(`Exception: ${err}`)
+  })
+  ipcMain.on('publish', function () {
+    console.log(...arguments)
   })
 })

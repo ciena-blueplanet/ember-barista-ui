@@ -6,9 +6,16 @@ export default Ember.Component.extend({
     'scenario',
     'collection-item',
   ],
+
+  changeObserve: function () {
+    let v = this.get('value');
+    v = v.replace(/"([^"]*)"close/g, '"$1"')
+    this.set('scenario.content', v)
+  }.observes('value'),
   actions: {
     tributeReplaced (e) {
-      this.get('scenario.elements').pushObject(e.detail)
+      let v = $(e.detail).data('value')
+      this.get('scenario.elements').pushObject(v)
     }
   }
 });

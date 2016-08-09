@@ -13,11 +13,14 @@
       </span>
       <div class='options'>
         <a {{action 'delete' elements el}} href="#!" class="secondary-content" style='position: absolute; top:5px; right 0;'><i class="material-icons">delete</i></a>
-        <a {{action 'add' elements}} href="#!" class="secondary-content" style='position: absolute; top:35px; right 0;'><i class="material-icons">queue</i></a>
+        <a {{action 'edit' el}} href="#!" class="secondary-content" style='position: absolute; top:35px; right 0;'><i class="material-icons">mode_edit</i></a>
       </div>
       <i class='handle material-icons tiny'>reorder</i>
     {{/sortable-item}}
   {{/each}}
+  <li class='collection-item avatar dashed'>
+    <a {{action 'add' elements}} href="#!"><i class="material-icons medium">add</i></a>
+  </li>
 {{/sortable-group}}
 
 {{yield}}

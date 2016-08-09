@@ -1,17 +1,13 @@
 import Ember from 'ember';
+import ContentEditable from 'ember-content-editable/components/content-editable';
 const {
   Component,
   run
 } = Ember
 
-export default Component.extend({
-  tagName: 'div',
+export default ContentEditable.extend({
   classNames: [
     'tribute-input'
-  ],
-  contenteditable: true,
-  attributeBindings: [
-    'contenteditable'
   ],
   tribute: null,
   redraw: function () {
@@ -31,9 +27,9 @@ export default Component.extend({
     let tribute = new Tribute({
       values: this.get('content'),
       selectTemplate (item) {
-        return `<div class='chip' contenteditable='false'>` +
+        return `<div class='chip' data-value="${item.string}" contenteditable='false'>` +
           `"${item.string}"` +
-          `<i onclick='delete this.parentElement' class="material-icons close">close</i>` +
+          `<i onclick='delete this.parentElement' class="material-icons">close</i>` +
           `</div>`
       }
     })

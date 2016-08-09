@@ -39,6 +39,9 @@ body > .ember-view > .row {
   z-index:1000;
   .brand-logo {
     @media only screen and (min-width: 1200px) {
+
+    }
+    @media only screen and (min-width: 992px) {
       left: 50%;
       transform: translateX(-50%);
     }
@@ -141,5 +144,29 @@ input {
   overflow:scroll;
   &:focus {
     outline: none;
+  }
+}
+.dashed {
+  position: relative;
+  border-style: dashed;
+  border-width: thin;
+  border-color: #e0e0e0;
+  border-top: none;
+  opacity: 0.6;
+  border-bottom: dashed thin #e0e0e0 !important;
+  .material-icons {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0.3;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%) !important;
+    transition: opacity 0.2s ease;
+  }
+  &:hover {
+    opacity: 1;
+    .material-icons {
+      opacity: 0.7;
+    }
   }
 }

@@ -3,11 +3,14 @@ import Ember from 'ember'
 const {
   Controller
 } = Ember
-
 export default Controller.extend({
+  init () {
+    this.set('ipc', require('electron').ipcRenderer)
+  },
   scenarios: [
     {
       name: 'My Scenario',
+      content: '',
       elements: Ember.A()
     }
   ],
@@ -52,6 +55,9 @@ export default Controller.extend({
       Materialize.toast(`Selected ${e[0].label}`, 4000)
       if (!this.get('els').contains(e[0]))
         this.get('els').pushObject(e[0])
+    },
+    publish () {
+      this.get('ipc').send('publish', this.get('scenarios'))
     }
   }
 })

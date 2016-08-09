@@ -16,10 +16,13 @@ export default Component.extend({
     add (elements) {
       elements.pushObject(Ember.Object.create({
         label: 'New Element',
-        type: '',
+        type: 'Text Field',
         properties: Ember.A(),
         icon: 'add'
       }))
+    },
+    edit (el) {
+      Materialize.toast(`Edit`, 4000)
     },
     delete (elements, el) {
         this.set('elements', elements.removeObject(el))
