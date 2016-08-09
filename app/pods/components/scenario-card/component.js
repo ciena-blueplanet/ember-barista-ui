@@ -1,15 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  tagName: 'li',
   classNames: [
     'scenario',
-    'card',
-    'col',
-    's4'
+    'collection-item',
   ],
   actions: {
     tributeReplaced (e) {
-      console.log(e);
       this.get('scenario.elements').pushObject(e.detail)
     }
   }

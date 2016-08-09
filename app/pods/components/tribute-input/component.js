@@ -32,7 +32,7 @@ export default Component.extend({
       values: this.get('content'),
       selectTemplate (item) {
         return `<div class='chip' contenteditable='false'>` +
-          `${item.string}` +
+          `"${item.string}"` +
           `<i onclick='delete this.parentElement' class="material-icons close">close</i>` +
           `</div>`
       }

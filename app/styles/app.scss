@@ -60,42 +60,45 @@ body > .ember-view > .row {
     position: absolute;
   }
 }
-
-.collection-item {
-  position: relative;
-  i {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .handle {
-    position: absolute;
-    cursor: pointer;
-    right: 10px;
-    top:50%;
-    transform: translateY(-50%);
-  }
-  .options {
-    position: absolute;
-    top: 10px;
-    right: 5px;
-    a {
-      position: relative;
-      i {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        cursor: pointer;
-        opacity: 0.2;
-        transition: opacity 0.2s ease;
-        &:hover {
-          opacity: 1;
-          color: black;
+.sidebar {
+  .collection-item {
+    position: relative;
+    i {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .handle {
+      position: absolute;
+      cursor: pointer;
+      right: 10px;
+      top:50%;
+      color: #b0bec5;
+      transform: translateY(-50%);
+    }
+    .options {
+      position: absolute;
+      top: 10px;
+      right: 5px;
+      a {
+        position: relative;
+        i {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          cursor: pointer;
+          opacity: 0.2;
+          transition: opacity 0.2s ease;
+          &:hover {
+            opacity: 1;
+            color: black;
+          }
         }
       }
-    }
 
+    }
   }
 }
+
 .modal {
   height: 80%;
   width: 80%;
@@ -120,9 +123,8 @@ body > .ember-view > .row {
   }
 }
 .scenario {
-  height: 400px;
-  width: 400px;
-  margin: 10px;
+  height: 150px;
+  border-bottom: black solid 1px;
 }
 input {
   border-bottom: initial !important;

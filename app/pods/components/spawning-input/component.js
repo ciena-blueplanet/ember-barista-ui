@@ -10,7 +10,7 @@ export default Component.extend({
     $('select').material_select();
   },
   types: [
-    'Textfield',
+    'Text Field',
     'Button',
     'Link',
     'Page'

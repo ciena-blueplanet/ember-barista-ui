@@ -7,7 +7,7 @@
 
 {{side-nav items=sidenav}}
 <div class='row content'>
-  <div class='col s4 sidebar content resize horizontal' >
+  <div class='col s12 m5 l3 sidebar content resize horizontal' >
     <div class='card content'>
       <!-- {{frost-select
         class='col s12'
@@ -18,11 +18,13 @@
       <!-- {{sidebar-collapsible els=els}} -->
     </div>
   </div>
-  <div class='col s8 page content'>
+  <div class='col s12 m7 l9 page content'>
     <div class='card content scrollable'>
+      <ul class='collection'>
       {{#each scenarios as |scenario|}}
         {{scenario-card elements=elements scenario=scenario}}
       {{/each}}
+    </ul>
     </div>
     {{menu-items}}
   </div>

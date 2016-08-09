@@ -1,7 +1,7 @@
 {{#sortable-group class='collection content' tagName="ul" onChange="reorderItems" as |group|}}
   {{#each elements as |el i|}}
     {{#sortable-item tagName="li" class='collection-item avatar' model=el group=group handle=".handle"}}
-      <i class="material-icons circle">{{el.icon}}</i>
+      {{sidebar-avatar type=el.type}}
       <span class="title">
         {{spawning-input
           isFocused=property.isFocused
@@ -15,7 +15,7 @@
         <a {{action 'delete' elements el}} href="#!" class="secondary-content" style='position: absolute; top:5px; right 0;'><i class="material-icons">delete</i></a>
         <a {{action 'add' elements}} href="#!" class="secondary-content" style='position: absolute; top:35px; right 0;'><i class="material-icons">queue</i></a>
       </div>
-      <span class="handle">&varr;</span>
+      <i class='handle material-icons tiny'>reorder</i>
     {{/sortable-item}}
   {{/each}}
 {{/sortable-group}}

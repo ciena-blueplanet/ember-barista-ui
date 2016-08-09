@@ -13,13 +13,7 @@ export default Route.extend({
           return Ember.Object.create({
             label: e,
             properties: Ember.A(),
-            type: e,
-            icon: {
-              'Text Field': 'input',
-              'Button': 'explicit',
-              'Link': 'web',
-              "Page": 'snooze'
-            }[e]
+            type: e
           })
         }))
       })
