@@ -3,7 +3,7 @@
 
 const electron = require('electron')
 const path = require('path')
-
+const barista = require('./barista')
 const {
   ipcMain
 } = electron
@@ -50,5 +50,6 @@ app.on('ready', function onReady () {
   })
   ipcMain.on('publish', function (event, scenarios) {
     console.log(scenarios)
+    console.log(barista.generate(scenarios))
   })
 })

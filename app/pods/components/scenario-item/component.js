@@ -6,14 +6,14 @@ export default Ember.Component.extend({
     'scenario',
     'collection-item'
   ],
-  didInsertElement () {
-    this._super(...arguments)
-    this.set('name', this.get('scenario.name'))
-  },
   actions: {
     tributeReplaced (e) {
       let v = $(e.detail).data('value')
-      this.get('scenario.elements').pushObject(v)
+      let el = this.get('elements').find(function (e) {
+        return e.label === v;
+      })
+      this.get('scenario.elements')[v] = Object.assign({}, el)
+
     },
     focusOut (e) {
       this.set('scenario.content', e.replace(/"([^"]*)"close/g, '"$1"'))

@@ -11,7 +11,7 @@ export default Controller.extend({
     {
       name: 'My Scenario',
       content: '',
-      elements: Ember.A()
+      elements: {}
     }
   ],
   menu_buttons: [
@@ -62,7 +62,8 @@ export default Controller.extend({
     add () {
       this.get('scenarios').pushObject({
         name: 'New Scenario',
-        elements: Ember.A()
+        content: '',
+        elements: {}
       })
     }
   }
