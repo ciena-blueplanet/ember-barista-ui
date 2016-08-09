@@ -65,6 +65,9 @@ export default Controller.extend({
         content: '',
         elements: {}
       })
+    },
+    deleteScenario (e) {
+      this.get('scenarios').removeObject(e)
     }
   }
 })

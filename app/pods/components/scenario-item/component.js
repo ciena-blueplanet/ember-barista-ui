@@ -20,6 +20,9 @@ export default Ember.Component.extend({
     },
     valueChanged (e) {
       this.set('scenario.name', e)
+    },
+    delete () {
+      this.get('targetObject').send('deleteScenario', this.get('scenario'))
     }
   }
 });
