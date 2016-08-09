@@ -1,6 +1,8 @@
 module.exports = {
-  textfield: 'fillable',
+  'text-field': 'fillable',
+  'textfield': 'fillable',
+  'text field': 'fillable',
   button: 'clickable',
   page: 'visitable',
-  text: 'fillable'
+  link: 'fillable'
 }

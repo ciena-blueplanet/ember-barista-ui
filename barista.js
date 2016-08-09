@@ -7,17 +7,20 @@
   module.exports = {
     generate (scenarios) {
       utils.init()
+      console.log(scenarios)
       let name = 'Testing Name'
       let elements = {}
       scenarios.forEach(function (e) {
         Object.assign(elements, e.elements)
       })
-      return utils.compile('suite', {
+      utils.compile('suite', {
         title: name,
         dasherized: utils.S(name.toLowerCase()).dasherize().s,
         camelized: name,
         elements,
         scenarios,
+      }).then(file => {
+        utils.fs.writeFileSync('testfile.js', file)
       })
     }
   }

@@ -19,7 +19,7 @@ import {
 const expect = chai.expect
 
 const PageObject = create({
-
+{{page elements}}
 })
 
 describe('Acceptance: {{title}}', function () {
@@ -31,10 +31,6 @@ describe('Acceptance: {{title}}', function () {
   afterEach(function () {
     destroyApp(application)
   })
+  {{describe scenarios}}
 })
 `
-/**
- * {{page elements}}
- * {{describe scenarios}}
-
- */

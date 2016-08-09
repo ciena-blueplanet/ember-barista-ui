@@ -25,63 +25,29 @@
     object,
     // = Methods =================
     init () {
-      let populate = function (content = '', tests, depth = 2) {
-        if (tests instanceof Array) {
-          tests.forEach(test => {
-            content += populate('', test, depth + 1)
-          })
-          return content
-        } else if (typeof tests === 'object') {
-          let k = Object.keys(tests)[0]
-          if (k === 'Setup' && tests[k] instanceof Array) {
-            content += `${S('  ').times(depth-2)}beforeEach(function () {\n`
-            tests[k].forEach(e => {
-              content += `${S('  ').times(depth-1)}//TODO ${e}\n`
-            })
-            content += `${S('  ').times(depth-2)}})\n`
-            let t = tests['Tests']
-            if(t && t instanceof Array) {
-              return populate(content, t, depth + 1) + `${S(' ').times(depth)}\n`
-            }
-          }
-          else {
-            content += `${S('  ').times(depth + 1)}describe('${k}', function () {\n`
-            return populate(content, tests[k], depth + 1) + `${S('  ').times(depth + 1)}})\n`
-          }
-        }
-        tests.split(' ').forEach(el => {
-          content += `${S('  ').times(depth)}let ${el} = PageObject['${el.toLowerCase().trim()}']\n`
-        })
-        return content + `${S('  ').times(depth)}it('${tests}', function () {})\n`
-      }
       Handlebars.registerHelper('describe', function (elem, options) {
         let content = ''
         elem.forEach(el => {
-          let key = Object.keys(el)[0]
-          let tests = el[key]['Tests']
-          if (tests) {
-            content += `\n${S('  ').times(1)}describe('${key}', function () {\n`
-            let before = el[key]['Setup']
-            if (before && before instanceof Array) {
-              content += `${S('  ').times(2)}beforeEach(function () {\n`
-              before.forEach(e => {
-                content += `${S('  ').times(3)}// TODO ${e}\n`
-              })
-              content += `${S('  ').times(2)}})\n`
-            }
-            content += populate('', tests) + `${S('  ').times(1)}})`
-          }
+          let els = ''
+          Object.keys(el.elements).map(e => el.elements[e]).forEach(e => {
+            els += `let ${S(e.label).camelize().s} = new PageObject['${S(e.label.toLowerCase()).dasherize().s}']\n\t`
+          })
+          content +=
+`describe('${S(el.name.replace(/\r?\n|\r/g, '')).dasherize().s}', function () {
+    it('${el.content.replace(/\r?\n|\r/g, '')}', function () {
+      ${els}
+    })
+`
         })
         return new Handlebars.SafeString(content)
       })
       Handlebars.registerHelper('page', function (elem, options) {
         let content = ''
-        elem.forEach(el => {
-          console.log(el)
-          let key  = Object.keys(el)[0]
-          let name = S(key.toLowerCase()).dasherize().s
-          if (el[key]['Type']) {
-            let type = el[key]['Type'].toLowerCase().trim()
+        Object.keys(elem).map(e =>elem[e]).forEach(el => {
+
+          let name = S(el.label.toLowerCase()).dasherize().s
+          if (el.type) {
+            let type = el.type.toLowerCase().trim()
             if (types[type]) {
               content += `  '${name}': ${types[type]}('.${name}')${elem[elem.length-1] !== el ? ',\n' : ''}`
             }
@@ -92,7 +58,7 @@
       Handlebars.registerHelper('imports', function (elem, options) {
         let content = ''
         let o = {}
-        elem = Object.keys(elem).map(e=>elem[e]).filter(el => {
+        elem = Object.keys(elem).map(e => elem[e]).filter(el => {
           if (el['type']) {
             let type = el['type'].toLowerCase()
             if (types[type] && !o[types[type]]) {
