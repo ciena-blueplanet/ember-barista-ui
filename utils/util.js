@@ -32,11 +32,11 @@
           scenario.tests.forEach(test => {
             content += `it('${test.content.replace(/\r?\n|\r/g, '')}', function () {\n`
             test.properties.forEach(prop => {
-              content += `// TODO: ${prop}\n`
+              content += `// TODO: ${prop.value}\n`
             })
-            content += '\n})'
+            content += '\n})\n'
           })
-          content += '\n})'
+          content += '\n})\n'
         })
         return new Handlebars.SafeString(content)
       })

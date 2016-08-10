@@ -16,7 +16,7 @@ export default Component.extend({
   ],
   actions: {
     updateElement (element, type, value) {
-      element.set(type, value)
+      this.set('elements', Object.assign([], this.get('elements')))
     },
     add (elements) {
       elements.pushObject(Ember.Object.create({

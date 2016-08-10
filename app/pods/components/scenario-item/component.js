@@ -21,7 +21,9 @@ export default Ember.Component.extend({
     create () {
       this.get('scenario.tests').pushObject({
         content: '',
-        properties: Ember.A([''])
+        properties: Ember.A([{
+          value: ''
+        }])
       })
     }
   }

@@ -6,15 +6,13 @@
         <div class='row'>
         {{#spawning-input
           value=el.label
-          type=el.type
           placeholder='Name'
           format='col s4'
           onEnter=(action 'add' elements)
-          onChange=(action 'updateElement' el)
+          onChange=(action 'updateElement' el 'label' el.label)
         }}
           {{md-select content=types
-           value=type
-           change=(action 'updateElement' el 'type' type)
+           value=el.type
            prompt="Type"
            optionLabelPath="content"
            optionValuePath="content" class="col s6"}}

@@ -13,7 +13,9 @@ export default Controller.extend({
       elements: {},
       tests: [{
         content: '',
-        properties: Ember.A([''])
+        properties: Ember.A([{
+          value: ''
+        }])
       }]
     }
   ],
@@ -70,7 +72,9 @@ export default Controller.extend({
         name: '',
         tests: [{
           content: '',
-          properties: Ember.A([''])
+          properties: Ember.A([{
+            value: ''
+          }])
         }],
         elements: {}
       })

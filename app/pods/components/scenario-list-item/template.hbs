@@ -15,9 +15,9 @@
     {{#each test.properties as |prop|}}
       <div class='collection-item'>
         {{spawning-input
-          value=prop
+          value=prop.value
           onEnter=(action 'add' test.properties)
-          onChange=(action 'change' prop)
+          onChange=(action 'change' prop.value)
           placeholder='Placeholder Text'
         }}
       </div>

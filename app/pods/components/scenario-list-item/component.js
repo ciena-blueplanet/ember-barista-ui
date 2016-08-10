@@ -14,7 +14,9 @@ export default Component.extend({
   },
   actions: {
     add () {
-      this.get('test.properties').pushObject('1')
+      this.get('test.properties').pushObject({
+        value: ''
+      })
     },
     change () {},
     focusOut (test, e) {
