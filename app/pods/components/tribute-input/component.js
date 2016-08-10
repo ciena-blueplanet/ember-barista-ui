@@ -28,6 +28,9 @@ export default ContentEditable.extend({
     this.get('targetObject').send('focusOut', this.get('test'), $(this.get('element')).text())
   },
   didInsertElement () {
+    $(this.get('element')).on('focus', function (e) {
+      e.stopPropagation();
+    })
     let tribute = new Tribute({
       values: this.get('content'),
       selectTemplate (item) {

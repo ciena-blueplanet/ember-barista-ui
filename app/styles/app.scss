@@ -60,6 +60,12 @@ body > .ember-view > .row {
     position: absolute;
   }
 }
+.collapsible-header {
+  i {
+    width: initial;
+    margin-right: initial;
+  }
+}
 input {
   border-bottom: initial !important;
 }
@@ -186,4 +192,43 @@ input {
 }
 .last {
   padding-top:20px;
+}
+.absolute {
+  position: absolute;
+  height: 3.2rem;
+  width: 100%;
+  overflow: hidden;
+}
+.collapsible-header {
+  height: 3.2rem;
+}
+.delete {
+  line-height: initial !important;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.6;
+    color: red;
+  }
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  opacity: 0.2;
+  transform: translateY(-50%);
+}
+.view_list {
+  line-height: initial !important;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.6;
+  }
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  opacity: 0.2;
+  transform: translateY(-50%);
+}
+.scenario-list-item {
+  position: relative;
 }

@@ -5,10 +5,6 @@ const {
 } = Ember;
 
 export default Component.extend({
-  didInsertElement () {
-    this.$('input').focus()
-    $('select').material_select();
-  },
   types: [
     'Text Field',
     'Button',

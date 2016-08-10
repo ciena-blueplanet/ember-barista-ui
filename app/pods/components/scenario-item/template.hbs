@@ -6,20 +6,11 @@
 </div>
 <ul class="collapsible popout" data-collapsible="accordion">
   {{#each scenario.tests as |test|}}
-    <li>
-      <div class="collapsible-header">
-        <i class='material-icons'>label_outline</i>
-        {{tribute-input
-          class='collection-item'
-          elements=elements
-          test=test
-          tributeReplaced=(action 'tributeReplaced' test)
-          placeholder='Describe'
-        }}
-      </div>
-      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-
-  </li>
+    {{scenario-list-item
+       scenario=scenario
+       elements=elements
+       test=test
+    }}
   {{/each}}
   <li>
     <div {{action 'create'}} class='collection-item dashed'>
