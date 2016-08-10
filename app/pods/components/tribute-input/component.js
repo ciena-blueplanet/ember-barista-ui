@@ -25,7 +25,7 @@ export default ContentEditable.extend({
     })
   }),
   focusOut () {
-    this.get('targetObject').send('focusOut', $(this.get('element')).text())
+    this.get('targetObject').send('focusOut', this.get('test'), $(this.get('element')).text())
   },
   didInsertElement () {
     let tribute = new Tribute({

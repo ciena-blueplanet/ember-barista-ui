@@ -19,6 +19,9 @@ body > .ember-view > .row {
 * {
   -webkit-font-smoothing: antialiased;
 }
+.chip {
+      -webkit-user-select: none;
+}
 
 .button-collapse {
   position: fixed;
@@ -57,12 +60,12 @@ body > .ember-view > .row {
     position: absolute;
   }
 }
+input {
+  border-bottom: initial !important;
+}
 .sidebar {
   z-index:100;
 
-  input {
-    border-bottom: initial !important;
-  }
   input[type=text]:focus:not([readonly]) {
     border-bottom: initial;
     box-shadow: initial;
@@ -138,7 +141,7 @@ body > .ember-view > .row {
   .input-field label {
     top: 1.2rem;
   }
-  height: 150px;
+  min-height: 150px;
   border-bottom: black solid 1px;
 }
 

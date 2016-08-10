@@ -7,7 +7,6 @@
   module.exports = {
     generate (scenarios) {
       utils.init()
-      console.log(scenarios)
       let name = 'Testing Name'
       let elements = {}
       scenarios.forEach(function (e) {

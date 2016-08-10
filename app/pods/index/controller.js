@@ -10,8 +10,10 @@ export default Controller.extend({
   scenarios: [
     {
       name: 'My Scenario',
-      content: '',
-      elements: {}
+      elements: {},
+      tests: [{
+        content: ''
+      }]
     }
   ],
   menu_buttons: [
@@ -57,12 +59,17 @@ export default Controller.extend({
         this.get('els').pushObject(e[0])
     },
     publish () {
-      this.get('ipc').send('publish', this.get('scenarios'))
+      this.get('ipc').send(
+        'publish',
+        this.get('scenarios').map(e => Object.assign({}, e))
+      )
     },
     add () {
       this.get('scenarios').pushObject({
         name: 'New Scenario',
-        content: '',
+        tests: [{
+          content: ''
+        }],
         elements: {}
       })
     },

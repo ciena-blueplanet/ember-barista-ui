@@ -23,6 +23,7 @@ const expect = chai.expect
 const PageObject = create({
   button: clickable(hook('button')),
   link: fillable(hook('link')),
+  newElement: fillable(hook('new-element')),
   page: visitable(hook('page')),
   textField: fillable(hook('text-field'))
 })
@@ -30,6 +31,7 @@ const PageObject = create({
 const {
   button,
   link,
+  newElement,
   page,
   textField
 } = PageObject
@@ -43,8 +45,16 @@ describe('Acceptance: Testing Name', function () {
   afterEach(function () {
     destroyApp(application)
   })
-  describe('-my-scenario', function () {
-    it('"Button" "Text Field" "Link" "Page" ', function () {
+  describe('@-button', function () {
+    it('', function () {
+      
+    })
+describe('-new-scenario', function () {
+    it('', function () {
+      
+    })
+describe('-new-scenario', function () {
+    it('', function () {
       
     })
 

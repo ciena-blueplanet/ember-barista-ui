@@ -4,14 +4,28 @@
 </div>
 <div class='divider col s12'></div>
 </div>
-<div class='row'>
-  {{tribute-input
-    class='col s12 content'
-    elements=elements
-    value=value
-    tributeReplaced=(action 'tributeReplaced')
-    placeholder='Describe'
-  }}
-</div>
+<ul class="collapsible popout" data-collapsible="accordion">
+  {{#each scenario.tests as |test|}}
+    <li>
+      <div class="collapsible-header">
+        <i class='material-icons'>label_outline</i>
+        {{tribute-input
+          class='collection-item'
+          elements=elements
+          test=test
+          tributeReplaced=(action 'tributeReplaced' test)
+          placeholder='Describe'
+        }}
+      </div>
+      <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+
+  </li>
+  {{/each}}
+  <li>
+    <div {{action 'create'}} class='collection-item dashed'>
+      <a  href='#'><i class='material-icons'>add</i></a>
+    </div>
+  </li>
+ </ul>
 <a class='close-button' {{action 'delete'}} href='#'><i class='material-icons'>close</i></a>
 {{yield}}
