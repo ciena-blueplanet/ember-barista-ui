@@ -11,7 +11,7 @@
  * @param package    - package.json
  * @return util
  */
-;(function (chalk, yaml, Handlebars, S, fs, exec, types, pkg) {
+;(function (chalk, yaml, Handlebars, S, fs, exec, types, pkg, beautify) {
   let object = {}
   module.exports = {
     // = Properties =================
@@ -27,14 +27,16 @@
     init () {
       Handlebars.registerHelper('describe', function (elem, options) {
         let content = ''
-        elem.forEach(el => {
-          let els = ''
-          content +=
-`describe('${S(el.name.replace(/\r?\n|\r/g, '')).dasherize().s}', function () {
-    it('${el.content.replace(/\r?\n|\r/g, '')}', function () {
-      ${els}
-    })
-`
+        elem.forEach(scenario => {
+          content += `describe('${S(scenario.name.replace(/\r?\n|\r/g, '')).dasherize().s}', function () {\n`
+          scenario.tests.forEach(test => {
+            content += `it('${test.content.replace(/\r?\n|\r/g, '')}', function () {\n`
+            test.properties.forEach(prop => {
+              content += `// TODO: ${prop}\n`
+            })
+            content += '\n})'
+          })
+          content += '\n})'
         })
         return new Handlebars.SafeString(content)
       })
@@ -47,7 +49,7 @@
           if (el.type) {
             let type = el.type.toLowerCase().trim()
             if (types[type]) {
-              content += `  ${S(name).camelize().s}: ${types[type]}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
+              content += `${S(name).camelize().s}: ${types[type]}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
             }
           }
         })
@@ -60,7 +62,7 @@
         elem.forEach(el => {
           let name = S(el.label.toLowerCase()).dasherize().s
 
-          content += `  ${S(name).camelize().s}${elem[elem.length-1] !== el ? ',\n' : ''}`
+          content += `${S(name).camelize().s}${elem[elem.length-1] !== el ? ',\n' : ''}`
         })
         return new Handlebars.SafeString(content)
 
@@ -79,7 +81,7 @@
         })
         elem.forEach(el => {
           let type = el['type'].toLowerCase()
-          content += `  ${types[type]}${elem[elem.length-1] !== el ? ',\n' : ''}`
+          content += `${types[type]}${elem[elem.length-1] !== el ? ',\n' : ''}`
         })
         return new Handlebars.SafeString(content)
       })
@@ -139,10 +141,12 @@
       return typeof obj === 'object'
     },
     compile (template, data) {
-      console.log('compiled')
       return new Promise((resolve, reject) => {
         try {
-          resolve(Handlebars.compile(require(`../templates/${template}`))(data))
+          resolve(beautify(Handlebars.compile(require(`../templates/${template}`))(data), {
+            indent_size: 2,
+            "space_after_anon_function": true
+          }))
         } catch (e) {
           console.log(e.stack)
           reject(e)
@@ -159,5 +163,6 @@
   require('fs'),
   require('child_process').execSync,
   require('./pagetypes'),
-  require('../package.json')
+  require('../package.json'),
+  require('js-beautify').js_beautify
 );

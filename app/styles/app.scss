@@ -203,6 +203,7 @@ input {
   height: 3.2rem;
 }
 .delete {
+  z-index: 999;
   line-height: initial !important;
   transition: opacity 0.2s ease;
   cursor: pointer;
@@ -212,11 +213,12 @@ input {
   }
   position: absolute;
   right: 5px;
-  top: 50%;
+  top: 1.5rem;
   opacity: 0.2;
   transform: translateY(-50%);
 }
 .view_list {
+  z-index:999;
   line-height: initial !important;
   transition: opacity 0.2s ease;
   cursor: pointer;
@@ -225,7 +227,7 @@ input {
   }
   position: absolute;
   right: 30px;
-  top: 50%;
+  top: 1.5rem;
   opacity: 0.2;
   transform: translateY(-50%);
 }

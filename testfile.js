@@ -19,25 +19,19 @@ import {
 } from 'ember-cli-page-object'
 
 const expect = chai.expect
-
 const PageObject = create({
   button: clickable(hook('button')),
   link: fillable(hook('link')),
-  newElement: fillable(hook('new-element')),
-  page: visitable(hook('page')),
-  textField: fillable(hook('text-field'))
+  page: visitable(hook('page'))
 })
-
 const {
   button,
   link,
-  newElement,
-  page,
-  textField
+  page
 } = PageObject
 
 describe('Acceptance: Testing Name', function () {
-  var application
+  let application
   beforeEach(function () {
     application = startApp()
   })
@@ -45,17 +39,21 @@ describe('Acceptance: Testing Name', function () {
   afterEach(function () {
     destroyApp(application)
   })
-  describe('@-button', function () {
-    it('', function () {
-      
-    })
-describe('-new-scenario', function () {
-    it('', function () {
-      
-    })
-describe('-new-scenario', function () {
-    it('', function () {
-      
-    })
+  describe('-scenario-name', function () {
+    it('"Button" is able to click.', function () {
+      // TODO: 
+      // TODO: 1
+      // TODO: 1
+      // TODO: 1
 
+    }) it('"Link" is visitable', function () {
+      // TODO: 
+
+    })
+  }) describe('-scenario-2', function () {
+    it('"Page" is easy to visit', function () {
+      // TODO: 
+
+    })
+  })
 })

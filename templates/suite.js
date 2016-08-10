@@ -13,22 +13,22 @@ import startApp from '../helpers/start-app';
 import destroyApp from '../helpers/destroy-app';
 
 import {
-  create{{#if elements}},{{/if}}
+create{{#if elements}},{{/if}}
 {{imports elements}}
 } from 'ember-cli-page-object'
 
 const expect = chai.expect
-
+{{#if elements}}
 const PageObject = create({
-{{page elements}}
+  {{page elements}}
 })
-
 const {
-{{destructure elements}}
+  {{destructure elements}}
 } = PageObject
+{{/if}}
 
 describe('Acceptance: {{title}}', function () {
-  var application
+  let application
   beforeEach(function () {
     application = startApp()
   })

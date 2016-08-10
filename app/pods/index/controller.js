@@ -9,10 +9,11 @@ export default Controller.extend({
   },
   scenarios: [
     {
-      name: 'My Scenario',
+      name: '',
       elements: {},
       tests: [{
-        content: ''
+        content: '',
+        properties: Ember.A([''])
       }]
     }
   ],
@@ -61,14 +62,15 @@ export default Controller.extend({
     publish () {
       this.get('ipc').send(
         'publish',
-        this.get('scenarios').map(e => Object.assign({}, e))
+        JSON.parse(JSON.stringify(this.get('scenarios')))
       )
     },
     add () {
       this.get('scenarios').pushObject({
-        name: 'New Scenario',
+        name: '',
         tests: [{
-          content: ''
+          content: '',
+          properties: Ember.A([''])
         }],
         elements: {}
       })

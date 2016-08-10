@@ -10,4 +10,17 @@
 
 <div class="collapsible-header">
 </div>
-<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+<div class="collapsible-body">
+  <div class='collection'>
+    {{#each test.properties as |prop|}}
+      <div class='collection-item'>
+        {{spawning-input
+          value=prop
+          onEnter=(action 'add' test.properties)
+          onChange=(action 'change' prop)
+          placeholder='Placeholder Text'
+        }}
+      </div>
+    {{/each}}
+  </div>
+</div>

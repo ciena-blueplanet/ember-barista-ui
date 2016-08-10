@@ -3,13 +3,23 @@
     {{#sortable-item tagName="li" class='collection-item avatar' model=el group=group handle=".handle"}}
       {{sidebar-avatar type=el.type}}
       <span class="title">
-        {{spawning-input
-          isFocused=property.isFocused
+        <div class='row'>
+        {{#spawning-input
           value=el.label
           type=el.type
+          placeholder='Name'
+          format='col s4'
           onEnter=(action 'add' elements)
           onChange=(action 'updateElement' el)
         }}
+          {{md-select content=types
+           value=type
+           change=(action 'updateElement' el 'type' type)
+           prompt="Type"
+           optionLabelPath="content"
+           optionValuePath="content" class="col s6"}}
+        {{/spawning-input}}
+      </div>
       </span>
       <div class='options'>
         <a {{action 'delete' elements el}} href="#!" class="secondary-content" style='position: absolute; top:5px; right 0;'><i class="material-icons">delete</i></a>

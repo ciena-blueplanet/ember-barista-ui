@@ -20,7 +20,8 @@ export default Ember.Component.extend({
     },
     create () {
       this.get('scenario.tests').pushObject({
-        content: ''
+        content: '',
+        properties: Ember.A([''])
       })
     }
   }

@@ -12,14 +12,12 @@
       scenarios.forEach(function (e) {
         Object.assign(elements, e.elements)
       })
-      utils.compile('suite', {
+      return utils.compile('suite', {
         title: name,
         dasherized: utils.S(name.toLowerCase()).dasherize().s,
         camelized: name,
         elements,
         scenarios,
-      }).then(file => {
-        utils.fs.writeFileSync('testfile.js', file)
       })
     }
   }

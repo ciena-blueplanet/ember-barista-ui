@@ -4,11 +4,13 @@
 const electron = require('electron')
 const path = require('path')
 const barista = require('./barista')
+const fs = require('fs')
 const {
   ipcMain
 } = electron
 const {
   app,
+  dialog,
   BrowserWindow
 } = electron
 
@@ -49,7 +51,12 @@ app.on('ready', function onReady () {
     console.log(`Exception: ${err}`)
   })
   ipcMain.on('publish', function (event, scenarios) {
-    console.log(scenarios)
-    console.log(barista.generate(scenarios))
+    barista.generate(scenarios).then(function (content) {
+
+      dialog.showSaveDialog(function (file) {
+        if (!file) return
+        fs.writeFileSync(file, content);
+      })
+    })
   })
 })
