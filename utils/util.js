@@ -29,9 +29,6 @@
         let content = ''
         elem.forEach(el => {
           let els = ''
-          Object.keys(el.elements).map(e => el.elements[e]).forEach(e => {
-            els += `let ${S(e.label).camelize().s} = new PageObject['${S(e.label.toLowerCase()).dasherize().s}']\n\t`
-          })
           content +=
 `describe('${S(el.name.replace(/\r?\n|\r/g, '')).dasherize().s}', function () {
     it('${el.content.replace(/\r?\n|\r/g, '')}', function () {
@@ -43,22 +40,36 @@
       })
       Handlebars.registerHelper('page', function (elem, options) {
         let content = ''
-        Object.keys(elem).map(e =>elem[e]).forEach(el => {
+        elem = Object.keys(elem).map(e =>elem[e])
+        elem.forEach(el => {
 
           let name = S(el.label.toLowerCase()).dasherize().s
           if (el.type) {
             let type = el.type.toLowerCase().trim()
             if (types[type]) {
-              content += `  '${name}': ${types[type]}('.${name}')${elem[elem.length-1] !== el ? ',\n' : ''}`
+              content += `  ${S(name).camelize().s}: ${types[type]}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
             }
           }
         })
         return new Handlebars.SafeString(content)
       })
+      Handlebars.registerHelper('destructure', function (elem) {
+        let content = ''
+
+        elem = Object.keys(elem).map(e => elem[e])
+        elem.forEach(el => {
+          let name = S(el.label.toLowerCase()).dasherize().s
+
+          content += `  ${S(name).camelize().s}${elem[elem.length-1] !== el ? ',\n' : ''}`
+        })
+        return new Handlebars.SafeString(content)
+
+      })
       Handlebars.registerHelper('imports', function (elem, options) {
         let content = ''
         let o = {}
-        elem = Object.keys(elem).map(e => elem[e]).filter(el => {
+        elem = Object.keys(elem).map(e => elem[e])
+        elem = elem.filter(el => {
           if (el['type']) {
             let type = el['type'].toLowerCase()
             if (types[type] && !o[types[type]]) {

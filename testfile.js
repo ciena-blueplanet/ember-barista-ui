@@ -1,5 +1,6 @@
 import chai from 'chai'
 import sinon from 'sinon'
+import hook from 'ember-hook'
 
 import {
   beforeEach,
@@ -20,11 +21,18 @@ import {
 const expect = chai.expect
 
 const PageObject = create({
-  'button': clickable('.button'),
-  'text-field': fillable('.text-field'),
-  'page': visitable('.page'),
-
+  button: clickable(hook('button')),
+  link: fillable(hook('link')),
+  page: visitable(hook('page')),
+  textField: fillable(hook('text-field'))
 })
+
+const {
+  button,
+  link,
+  page,
+  textField
+} = PageObject
 
 describe('Acceptance: Testing Name', function () {
   var application
@@ -35,16 +43,9 @@ describe('Acceptance: Testing Name', function () {
   afterEach(function () {
     destroyApp(application)
   })
-  describe('-button-interactions', function () {
-    it('"Button" will do this for "Text Field" do work properly', function () {
-      let Button = new PageObject['button']
-	    let TextField = new PageObject['text-field']
-
-    })
-  describe('-textfield-submits-form', function () {
-    it('On enter "Text Field" will submit the page and visit "Page" ', function () {
-      let Page = new PageObject['page']
-	    let TextField = new PageObject['text-field']
+  describe('-my-scenario', function () {
+    it('"Button" "Text Field" "Link" "Page" ', function () {
+      
     })
 
 })

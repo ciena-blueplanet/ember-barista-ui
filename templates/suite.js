@@ -1,6 +1,7 @@
 module.exports =
 `import chai from 'chai'
 import sinon from 'sinon'
+import hook from 'ember-hook'
 
 import {
   beforeEach,
@@ -21,6 +22,10 @@ const expect = chai.expect
 const PageObject = create({
 {{page elements}}
 })
+
+const {
+{{destructure elements}}
+} = PageObject
 
 describe('Acceptance: {{title}}', function () {
   var application
