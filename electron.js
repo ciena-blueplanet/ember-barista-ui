@@ -15,6 +15,7 @@ const {
 } = electron
 
 const dirname = __dirname || path.resolve(path.dirname())
+console.log(dirname)
 const location = `file://${dirname}/dist/index.html`
 
 let mainWindow = null

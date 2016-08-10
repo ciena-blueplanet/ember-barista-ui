@@ -1,7 +1,6 @@
 /**
  * Convenience tool for this convenience tool.
  * @param chalk      - Makes text pretty
- * @param yaml       - Parses yaml
  * @param inquire    - prompting
  * @param Handlebars - Powerful template compiler
  * @param S          - string.js
@@ -11,12 +10,11 @@
  * @param package    - package.json
  * @return util
  */
-;(function (chalk, yaml, Handlebars, S, fs, exec, types, pkg, beautify) {
+;(function (chalk, Handlebars, S, fs, exec, types, pkg, beautify) {
   let object = {}
   module.exports = {
     // = Properties =================
     chalk,
-    yaml,
     Handlebars,
     S,
     fs,
@@ -129,14 +127,6 @@
       obj.body = pretext
       return obj
     },
-    parse (obj) {
-      try {
-        return yaml.load(obj.body)
-      } catch (error) {
-        console.log(chalk.red.bold(error))
-        return null
-      }
-    },
     validate (obj) {
       return typeof obj === 'object'
     },
@@ -157,7 +147,6 @@
   }
 })(
   require('chalk'),
-  require('js-yaml'),
   require('handlebars'),
   require('string'),
   require('fs'),
