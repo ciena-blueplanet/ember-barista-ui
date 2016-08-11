@@ -26,7 +26,7 @@
       Handlebars.registerHelper('describe', function (elem, options) {
         let content = ''
         elem.forEach(scenario => {
-          content += `describe('${S(scenario.name.replace(/\r?\n|\r/g, '')).dasherize().s}', function () {\n`
+          content += `describe('${S(scenario.name.replace(/\r?\n|\r/g, '')).humanize().s}', function () {\n`
           scenario.tests.forEach(test => {
             content += `it('${test.content.replace(/\r?\n|\r/g, '')}', function () {\n`
             test.properties.forEach(prop => {
@@ -46,8 +46,11 @@
           let name = S(el.label.toLowerCase()).dasherize().s
           if (el.type) {
             let type = el.type.toLowerCase().trim()
-            if (types[type]) {
-              content += `${S(name).camelize().s}: ${types[type]}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
+            if (types[type].type === 'container') {
+
+            }
+            else if (types[type]) {
+              content += `${S(name).camelize().s}: ${types[type].type}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
             }
           }
         })
@@ -72,14 +75,17 @@
         elem = elem.filter(el => {
           if (el['type']) {
             let type = el['type'].toLowerCase()
-            if (types[type] && !o[types[type]]) {
-              return o[types[type]] = true
+            if (types[type].type === 'container') {
+              // TODO: impliment implicit
+            }
+            else if (types[type] && !o[types[type].type]) {
+              return o[types[type].type] = true
             }
           }
         })
         elem.forEach(el => {
           let type = el['type'].toLowerCase()
-          content += `${types[type]}${elem[elem.length-1] !== el ? ',\n' : ''}`
+          content += `${types[type].type}${elem[elem.length-1] !== el ? ',\n' : ''}`
         })
         return new Handlebars.SafeString(content)
       })
