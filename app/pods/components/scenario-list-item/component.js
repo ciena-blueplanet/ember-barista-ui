@@ -31,6 +31,9 @@ export default Component.extend({
     },
     delete (el) {
       this.get('scenario.tests').removeObject(this.get('test'))
+    },
+    removeObject (els, el) {
+      els.removeObject(el)
     }
   }
 });

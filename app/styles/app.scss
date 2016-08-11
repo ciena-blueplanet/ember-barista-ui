@@ -234,3 +234,24 @@ input {
 .scenario-list-item {
   position: relative;
 }
+.collection-item {
+  input {
+    margin: 0;
+  }
+  input[type=text]:focus:not([readonly]) {
+    border-bottom: initial;
+    box-shadow: initial;
+  }
+  .close {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    opacity : 0.2;
+    &:hover {
+      opacity:0.6;
+    }
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
+  }
+}
