@@ -1,20 +1,34 @@
-{{#each elements as |el|}}
- <li class="collection-item avatar">
-   {{log el}}
-   <i class="material-icons circle">{{el.icon}}</i>
-   <span class="title">
-     {{spawning-input
-       isFocused=property.isFocused
-       value=el.label
-       type=el.type
-       onEnter=(action 'add' elements)
-       onChange=(action 'updateElement' el)
-     }}
-   </span>
-   <div class='options'>
-     <a {{action 'edit'}} href="#!" class="secondary-content" style='position: absolute; top:5px; right 0;'><i class="material-icons">mode_edit</i></a>
-     <a {{action 'add' elements}} href="#!" class="secondary-content" style='position: absolute; top:35px; right 0;'><i class="material-icons">queue</i></a>
-   </div>
- </li>
-{{/each}}
+{{#sortable-group class='collection content' tagName="ul" onChange="reorderItems" as |group|}}
+  {{#each elements as |el i|}}
+    {{#sortable-item tagName="li" class='collection-item avatar' model=el group=group handle=".handle"}}
+      {{sidebar-avatar type=el.type}}
+      <span class="title">
+        <div class='row'>
+        {{#spawning-input
+          value=el.label
+          placeholder='Name'
+          format='col s4'
+          onEnter=(action 'add' elements)
+          onChange=(action 'updateElement' el 'label' el.label)
+        }}
+          {{md-select content=types
+           value=el.type
+           prompt="Type"
+           optionLabelPath="content"
+           optionValuePath="content" class="col s6"}}
+        {{/spawning-input}}
+      </div>
+      </span>
+      <div class='options'>
+        <a {{action 'delete' elements el}} href="#!" class="secondary-content" style='position: absolute; top:5px; right 0;'><i class="material-icons">delete</i></a>
+        <a {{action 'edit' el}} href="#!" class="secondary-content" style='position: absolute; top:35px; right 0;'><i class="material-icons">mode_edit</i></a>
+      </div>
+      <i class='handle material-icons tiny'>reorder</i>
+    {{/sortable-item}}
+  {{/each}}
+  <li {{action 'add' elements}} class='collection-item avatar dashed'>
+    <a href="#!"><i class="material-icons medium">add</i></a>
+  </li>
+{{/sortable-group}}
+
 {{yield}}

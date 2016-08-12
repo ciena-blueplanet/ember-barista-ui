@@ -1,0 +1,29 @@
+{{tribute-input
+  class='collection-item absolute'
+  elements=elements
+  test=test
+  tributeReplaced=tributeReplaced
+  placeholder='Describe'
+}}
+<i {{action 'delete' this}} class='delete material-icons'>delete</i>
+<i class='view_list material-icons'>view_list</i>
+
+<div class="collapsible-header">
+</div>
+<div class="collapsible-body">
+  <div class='collection'>
+    {{#each test.properties as |prop i|}}
+      <div class='collection-item' style='position:relative;'>
+        {{spawning-input
+          value=prop.value
+          onEnter=(action 'add' test.properties)
+          onChange=(action (mut prop.value) prop.value)
+          placeholder='It will'
+        }}
+        {{#if (gt i 0)}}
+          <i {{action 'removeObject' test.properties prop}} class='close material-icons'>close</i>
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+</div>

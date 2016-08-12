@@ -7,21 +7,23 @@
 
 {{side-nav items=sidenav}}
 <div class='row content'>
-  <div class='col s4 sidebar content resize horizontal' >
+  <div class='col s12 m5 l4 sidebar content resize horizontal' >
     <div class='card content'>
-      <!-- {{frost-select
-        class='col s12'
-        data=elements
-        onChange=(action 'change')
-      }} -->
       {{sidebar-list elements=elements}}
-      <!-- {{sidebar-collapsible els=els}} -->
     </div>
   </div>
-  <div class='col s8 page content'>
-    <div class='card content'>
-      {{menu-items buttons=menu_buttons}}
+  <div class='col s12 m7 l8 page content'>
+    <div class='card content scrollable'>
+      <ul class='collection'>
+      {{#each scenarios as |scenario|}}
+        {{scenario-item elements=elements scenario=scenario}}
+      {{/each}}
+      <li {{action 'add' elements}}class='scenario collection-item dashed last'>
+        <a href="#!"><i class="material-icons medium">add</i></a>
+      </li>
+    </ul>
     </div>
+    {{menu-items}}
   </div>
 </div>
 

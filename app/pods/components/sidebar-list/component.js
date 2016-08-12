@@ -1,22 +1,39 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
-  tagName: 'ul',
-  classNames: ['collection sidebar-list'],
+const {
+  Component,
+  run
+} = Ember
+
+export default Component.extend({
+  tagName: 'div',
+  classNames: ['content'],
+  types: [
+    'Text Field',
+    'Button',
+    'Link',
+    'Page'
+  ],
   actions: {
     updateElement (element, type, value) {
-      console.log(type, value)
-      element.set(type, value)
-      console.log(this.get('elements'))
+      this.set('elements', Object.assign([], this.get('elements')))
     },
     add (elements) {
       elements.pushObject(Ember.Object.create({
-        label: '',
-        type: '',
+        label: 'New Element',
+        type: 'Text Field',
         properties: Ember.A(),
         icon: 'add'
       }))
     },
-    edit () {}
+    edit (el) {
+      Materialize.toast(`Edit`, 4000)
+    },
+    delete (elements, el) {
+        this.set('elements', elements.removeObject(el))
+    },
+    reorderItems(elements, dragged) {
+      this.set('elements', elements)
+   }
   }
 });

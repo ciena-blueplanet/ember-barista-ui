@@ -1,0 +1,22 @@
+<div class='row' style='padding-top: 5px;'>
+<div class="input-field col s6">
+  {{input placeholder='Scenario Name' value=name type='text' focus-out=(action 'valueChanged')}}
+</div>
+<div class='divider col s12'></div>
+</div>
+<ul class="collapsible popout" data-collapsible="accordion">
+  {{#each scenario.tests as |test|}}
+    {{scenario-list-item
+       scenario=scenario
+       elements=elements
+       test=test
+    }}
+  {{/each}}
+  <li>
+    <div {{action 'create'}} class='collection-item dashed'>
+      <a  href='#'><i class='material-icons'>add</i></a>
+    </div>
+  </li>
+ </ul>
+<a class='close-button' {{action 'delete'}} href='#'><i class='material-icons'>close</i></a>
+{{yield}}

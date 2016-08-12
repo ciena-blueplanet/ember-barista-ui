@@ -3,8 +3,22 @@ import Ember from 'ember'
 const {
   Controller
 } = Ember
-
 export default Controller.extend({
+  init () {
+    this.set('ipc', require('electron').ipcRenderer)
+  },
+  scenarios: [
+    {
+      name: '',
+      elements: {},
+      tests: [{
+        content: '',
+        properties: Ember.A([{
+          value: ''
+        }])
+      }]
+    }
+  ],
   menu_buttons: [
     {
       action: 'addElement',
@@ -36,21 +50,37 @@ export default Controller.extend({
   ],
   elements: Ember.computed.alias('model.elements'),
   actions: {
-    addElement () {
-       Materialize.toast('Adding element', 4000)
-    },
     addScenario () {
-      Materialize.toast('Adding scenario', 4000)
-
-    },
-    openModal (modal) {
-      $(`#${modal}`).openModal()
-      $(`#${modal} select`).material_select();
+      this.get('scenarios').pushObject({
+        name: 'New Scenario',
+        elements: Ember.A()
+      })
     },
     change (e) {
       Materialize.toast(`Selected ${e[0].label}`, 4000)
       if (!this.get('els').contains(e[0]))
         this.get('els').pushObject(e[0])
+    },
+    publish () {
+      this.get('ipc').send(
+        'publish',
+        JSON.parse(JSON.stringify(this.get('scenarios')))
+      )
+    },
+    add () {
+      this.get('scenarios').pushObject({
+        name: '',
+        tests: [{
+          content: '',
+          properties: Ember.A([{
+            value: ''
+          }])
+        }],
+        elements: {}
+      })
+    },
+    deleteScenario (e) {
+      this.get('scenarios').removeObject(e)
     }
   }
 })
