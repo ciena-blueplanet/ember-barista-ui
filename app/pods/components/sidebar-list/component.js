@@ -6,7 +6,6 @@ const {
 } = Ember
 
 export default Component.extend({
-  elementService: Ember.inject.service(),
   tagName: 'div',
   classNames: ['content'],
   types: [
@@ -27,12 +26,8 @@ export default Component.extend({
         icon: 'add'
       }))
     },
-    edit (el) {
-      this.set('elementService.element', el)
-      $('#editElement').openModal()
-    },
     delete (elements, el) {
-        this.set('elements', elements.removeObject(el))
+      this.set('elements', elements.removeObject(el))
     },
     reorderItems(elements, dragged) {
       this.set('elements', elements)

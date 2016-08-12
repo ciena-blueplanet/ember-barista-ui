@@ -102,6 +102,10 @@ export default Controller.extend({
     },
     deleteScenario (e) {
       this.get('scenarios').removeObject(e)
+    },
+    edit (el) {
+      this.set('currentElement', el)
+      $('#editElement').openModal()
     }
   }
 })
