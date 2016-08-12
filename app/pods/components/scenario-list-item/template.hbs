@@ -16,7 +16,7 @@
       <div class='collection-item' style='position:relative;'>
         {{spawning-input
           value=prop.value
-          onEnter=(action 'add' test.properties)
+          onEnter=(action 'add' prop.value)
           onChange=(action (mut prop.value) prop.value)
           placeholder='It will'
         }}

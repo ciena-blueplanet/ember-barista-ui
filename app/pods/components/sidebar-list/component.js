@@ -6,6 +6,7 @@ const {
 } = Ember
 
 export default Component.extend({
+  elementService: Ember.inject.service(),
   tagName: 'div',
   classNames: ['content'],
   types: [
@@ -27,7 +28,8 @@ export default Component.extend({
       }))
     },
     edit (el) {
-      Materialize.toast(`Edit`, 4000)
+      this.set('elementService.element', el)
+      $('#editElement').openModal()
     },
     delete (elements, el) {
         this.set('elements', elements.removeObject(el))

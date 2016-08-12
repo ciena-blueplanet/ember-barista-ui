@@ -12,7 +12,9 @@ export default Route.extend({
         resolve(['Button', 'Text Field', 'Link', "Page"].map(e => {
           return Ember.Object.create({
             label: e,
-            properties: Ember.A(),
+            properties: Ember.A([{
+              value: ''
+            }]),
             type: e
           })
         }))

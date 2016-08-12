@@ -13,12 +13,12 @@ export default Component.extend({
     })
   },
   actions: {
-    add () {
-      this.get('test.properties').pushObject({
-        value: ''
-      })
+    add (value) {
+      if (value)
+        this.get('test.properties').pushObject({
+          value: ''
+        })
     },
-    change () {},
     focusOut (test, e) {
       test['content'] = e.replace(/"([^"]*)"close/g, '"$1"')
     },

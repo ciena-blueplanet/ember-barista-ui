@@ -1,0 +1,20 @@
+<div class="modal-content">
+  <div class='row'>
+    <h5>{{el.label}} - Edit Properties</h5>
+    <ul class='collection'>
+    {{#each el.properties as |prop i|}}
+      <li class='collection-item'>
+        {{spawning-input
+          value=prop.value
+          onEnter=(action 'add' prop.value)
+          onChange=(action (mut prop.value) prop.value)
+          placeholder=i
+        }}
+      </li>
+    {{/each}}
+  </ul>
+ </div>
+</div>
+<div class="modal-footer">
+  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+</div>
