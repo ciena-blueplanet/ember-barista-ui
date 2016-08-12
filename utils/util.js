@@ -30,7 +30,8 @@
           scenario.tests.forEach(test => {
             content += `it('${test.content.replace(/\r?\n|\r/g, '')}', function () {\n`
             test.properties.forEach(prop => {
-              content += `// TODO: ${prop.value}\n`
+              if(prop.value.trim())
+                content += `// TODO: ${prop.value}\n`
             })
             content += '\n})\n'
           })
@@ -108,40 +109,13 @@
     string (text, method) {
       return S(text)[method]().s
     },
-    preparse (obj) {
-      let str = obj.body.replace(
-        /([\w\W]+)Acceptance Criteria:([\w\W]+)/,
-        'Acceptance Criteria:$2'
-      )
-      let pretext = str.replace(/([\w\W]+)Scenarios:([\w\W]+)/, '$1')
-      let scenarios = str.replace(/([\w\W]+)Scenarios:([\w\W]+)/, '$2')
-      scenarios.split('\n')
-        .forEach(e => {
-          let matches = e.match(/"\w+"/g)
-
-          if (matches && e.indexOf('-') < 0) {
-            let m = matches.map(el => {
-                try {
-                  return el.replace(/"(.*)"/, '$1').replace('\r', '')
-                } catch (e) {
-                  return ''
-                }
-            })
-            object[e] = m
-          }
-        })
-      obj.body = pretext
-      return obj
-    },
-    validate (obj) {
-      return typeof obj === 'object'
-    },
     compile (template, data) {
       return new Promise((resolve, reject) => {
         try {
           resolve(beautify(Handlebars.compile(require(`../templates/${template}`))(data), {
             indent_size: 2,
-            "space_after_anon_function": true
+            space_after_anon_function: true,
+            max_preserve_newlines: 2,
           }))
         } catch (e) {
           console.log(e.stack)

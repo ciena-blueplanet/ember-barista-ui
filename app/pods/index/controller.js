@@ -1,11 +1,32 @@
 import Ember from 'ember'
 
 const {
-  Controller
+  Controller,
+  run
 } = Ember
+const {
+  remote,
+  ipcRenderer
+} = require('electron')
+
+const {
+  Menu,
+  MenuItem
+} = remote
+
 export default Controller.extend({
   init () {
-    this.set('ipc', require('electron').ipcRenderer)
+    this._super(...arguments)
+    const menu = new Menu()
+    menu.append(new MenuItem({label: 'MenuItem1', click() { console.log('item 1 clicked') }}))
+    menu.append(new MenuItem({type: 'separator'}))
+    menu.append(new MenuItem({label: 'MenuItem2', type: 'checkbox', checked: true}))
+    run.schedule('afterRender', this, function () {
+      window.addEventListener('contextmenu', (e) => {
+        e.preventDefault()
+        menu.popup(remote.getCurrentWindow())
+      }, false)
+    });
   },
   scenarios: [
     {
@@ -62,7 +83,7 @@ export default Controller.extend({
         this.get('els').pushObject(e[0])
     },
     publish () {
-      this.get('ipc').send(
+      ipcRenderer.send(
         'publish',
         JSON.parse(JSON.stringify(this.get('scenarios')))
       )

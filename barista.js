@@ -18,6 +18,7 @@
         camelized: name,
         elements,
         scenarios,
+        hasElements: !!Object.keys(elements).length
       })
     }
   }

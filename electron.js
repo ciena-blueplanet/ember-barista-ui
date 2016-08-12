@@ -5,6 +5,7 @@ const electron = require('electron')
 const path = require('path')
 const barista = require('./barista')
 const fs = require('fs')
+const exec = require('child_process').exec
 const {
   ipcMain
 } = electron
@@ -15,7 +16,6 @@ const {
 } = electron
 
 const dirname = __dirname || path.resolve(path.dirname())
-console.log(dirname)
 const location = `file://${dirname}/dist/index.html`
 
 let mainWindow = null
@@ -54,10 +54,12 @@ app.on('ready', function onReady () {
   ipcMain.on('publish', function (event, scenarios) {
     console.log(scenarios)
     barista.generate(scenarios).then(function (content) {
-
       dialog.showSaveDialog(function (file) {
         if (!file) return
-        fs.writeFileSync(file, content);
+        fs.writeFile(file, content, function (err) {
+          if (!err)
+            exec(`open ${file}`)
+        })
       })
     })
   })
