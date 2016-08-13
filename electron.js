@@ -52,7 +52,7 @@ app.on('ready', function onReady () {
     console.log(`Exception: ${err}`)
   })
   ipcMain.on('publish', function (event, scenarios) {
-    console.log(scenarios)
+    console.log(JSON.stringify(scenarios))
     barista.generate(scenarios).then(function (content) {
       dialog.showSaveDialog(function (file) {
         if (!file) return

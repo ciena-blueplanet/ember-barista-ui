@@ -1,32 +1,18 @@
 import Ember from 'ember'
+import menu from '../../utils/menu'
 
 const {
   Controller,
   run
 } = Ember
 const {
-  remote,
   ipcRenderer
 } = require('electron')
-
-const {
-  Menu,
-  MenuItem
-} = remote
 
 export default Controller.extend({
   init () {
     this._super(...arguments)
-    const menu = new Menu()
-    menu.append(new MenuItem({label: 'MenuItem1', click() { console.log('item 1 clicked') }}))
-    menu.append(new MenuItem({type: 'separator'}))
-    menu.append(new MenuItem({label: 'MenuItem2', type: 'checkbox', checked: true}))
-    run.schedule('afterRender', this, function () {
-      window.addEventListener('contextmenu', (e) => {
-        e.preventDefault()
-        menu.popup(remote.getCurrentWindow())
-      }, false)
-    });
+    menu.init()
   },
   scenarios: [
     {

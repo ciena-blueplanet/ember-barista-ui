@@ -12,7 +12,8 @@ export default Component.extend({
     'Text Field',
     'Button',
     'Link',
-    'Page'
+    'Page',
+    'List Record'
   ],
   actions: {
     updateElement (element, type, value) {
@@ -20,9 +21,13 @@ export default Component.extend({
     },
     add (elements) {
       elements.pushObject(Ember.Object.create({
-        label: 'New Element',
+        label: '',
         type: 'Text Field',
-        properties: Ember.A(),
+        properties: Ember.A([
+          {
+            value: ''
+          }
+        ]),
         icon: 'add'
       }))
     },
