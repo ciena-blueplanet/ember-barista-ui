@@ -9,7 +9,7 @@
 <div class='row content'>
   <div class='col s12 m5 l4 sidebar content resize horizontal' >
     <div class='card content'>
-      {{sidebar-list elements=elements}}
+      {{sidebar-list elements=elements edit=(action 'edit')}}
     </div>
   </div>
   <div class='col s12 m7 l8 page content'>
@@ -27,6 +27,5 @@
   </div>
 </div>
 
-
 <!-- Modals -->
-{{scenario-modal content=elements}}
+{{element-modal el=currentElement}}

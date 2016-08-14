@@ -16,7 +16,8 @@ export default Component.extend({
       'Text Field': 'input',
       'Button': 'explicit',
       'Link': 'web',
-      "Page": 'snooze'
+      'Page': 'snooze',
+      'List Record': 'list'
     }[t]
   })
 });

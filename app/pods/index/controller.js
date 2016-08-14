@@ -1,11 +1,18 @@
 import Ember from 'ember'
+import menu from '../../utils/menu'
 
 const {
-  Controller
+  Controller,
+  run
 } = Ember
+const {
+  ipcRenderer
+} = require('electron')
+
 export default Controller.extend({
   init () {
-    this.set('ipc', require('electron').ipcRenderer)
+    this._super(...arguments)
+    menu.init()
   },
   scenarios: [
     {
@@ -62,7 +69,7 @@ export default Controller.extend({
         this.get('els').pushObject(e[0])
     },
     publish () {
-      this.get('ipc').send(
+      ipcRenderer.send(
         'publish',
         JSON.parse(JSON.stringify(this.get('scenarios')))
       )
@@ -81,6 +88,10 @@ export default Controller.extend({
     },
     deleteScenario (e) {
       this.get('scenarios').removeObject(e)
+    },
+    edit (el) {
+      this.set('currentElement', el)
+      $('#editElement').openModal()
     }
   }
 })

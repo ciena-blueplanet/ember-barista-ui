@@ -13,12 +13,12 @@ import startApp from '../helpers/start-app';
 import destroyApp from '../helpers/destroy-app';
 
 import {
-create{{#if elements}},{{/if}}
+create{{#if hasElements}},{{/if}}
 {{imports elements}}
 } from 'ember-cli-page-object'
 
 const expect = chai.expect
-{{#if elements}}
+{{#if hasElements}}
 const PageObject = create({
   {{page elements}}
 })

@@ -11,7 +11,8 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test",
-    "lint": "eslint *.js addon app blueprints config tests --fix"
+    "lint": "eslint *.js addon app blueprints config tests --fix",
+    "compile": "ember electron:package --platform=darwin --arch=x64 --overwrite"
   },
   "repository": "",
   "engines": {

@@ -9,10 +9,12 @@ export default Route.extend({
   model () {
     return RSVP.hash({
       elements: new RSVP.Promise((resolve, reject) => {
-        resolve(['Button', 'Text Field', 'Link', "Page"].map(e => {
+        resolve(['Button', 'Text Field', 'Link', "Page", "List Record"].map(e => {
           return Ember.Object.create({
             label: e,
-            properties: Ember.A(),
+            properties: Ember.A([{
+              value: ''
+            }]),
             type: e
           })
         }))

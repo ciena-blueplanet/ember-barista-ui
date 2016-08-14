@@ -3,11 +3,12 @@
 # compiled output
 /dist
 /tmp
+/electron-builds
 
 # dependencies
 /node_modules
 /bower_components
-
+/
 # misc
 /.sass-cache
 /connect.lock
