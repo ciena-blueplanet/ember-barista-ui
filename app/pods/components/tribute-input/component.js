@@ -25,10 +25,10 @@ export default ContentEditable.extend({
     })
   }),
   focusOut () {
-    this.get('targetObject').send('focusOut', this.get('test'), $(this.get('element')).text())
+    this.get('targetObject').send('focusOut', this.get('test'), this.$().text())
   },
   didInsertElement () {
-    $(this.get('element')).on('focus', function (e) {
+    this.$().on('focus', function (e) {
       e.stopPropagation();
     })
     let tribute = new Tribute({
@@ -37,14 +37,14 @@ export default ContentEditable.extend({
         let v = item.original.value
         return `<div class='chip' data-value="${v}" contenteditable='false'>` +
           `"${v}"` +
-          `<i onclick='delete this.parentElement' class="material-icons">close</i>` +
+          `<i class="close material-icons">close</i>` +
           `</div>`
       }
     })
     tribute.attach(this.get('element'))
     this.set('tribute', tribute)
     this.redraw()
-    this.get('element').addEventListener('tribute-replaced', (e) => {
+    this.$().on('tribute-replaced', (e) => {
       this.get('targetObject').send('tributeReplaced', e)
     })
   }
