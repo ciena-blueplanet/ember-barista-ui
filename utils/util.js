@@ -41,15 +41,22 @@
       Handlebars.registerHelper('page', function (elem, options) {
         let content = ''
         elem = Object.keys(elem).map(e =>elem[e])
-        elem.forEach(el => {
+        elem.forEach( (el, index) => {
 
           let name = S(el.label.toLowerCase()).dasherize().s
           if (el.type) {
             if (types[el.type].type === 'container') {
+              let obj = types[el.type].elements
+              let elements = Object.keys(obj)
+              elements.forEach((e, i) => {
+                let type = obj[e].type
+                let label = S(e).dasherize()
+                content += `${label.camelize().s}: ${type}(hook('${label.s}'))${i < elements.length - 1 || index < elem.length -1 ? ',\n' : ''}`
+              })
 
             }
             else if (types[el.type]) {
-              content += `${S(name).camelize().s}: ${types[el.type].type}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
+              content += `${S(name).camelize().s}: ${types[el.type].type}(hook('${name}'))${index < elem.length -1 ? ',\n' : ''}`
             }
           }
         })
@@ -59,10 +66,19 @@
         let content = ''
 
         elem = Object.keys(elem).map(e => elem[e])
-        elem.forEach(el => {
+        elem.forEach((el, index) => {
           let name = S(el.label.toLowerCase()).dasherize().s
-
-          content += `${S(name).camelize().s}${elem[elem.length-1] !== el ? ',\n' : ''}`
+          if (types[el.type].type === 'container') {
+            let obj = types[el.type].elements
+            let elements = Object.keys(obj)
+            elements.forEach((e, i) => {
+              let type = obj[e].type
+              let label = S(e).dasherize()
+              content += `${label.camelize().s}${i < elements.length - 1 || index < elem.length -1 ? ',\n' : ''}`
+            })
+          } else {
+            content += `${S(name).camelize().s}${index < elem.length -1 ? ',\n' : ''}`
+          }
         })
         return new Handlebars.SafeString(content)
 
@@ -74,15 +90,39 @@
         elem = elem.filter(el => {
           if (el.type) {
             if (types[el.type].type === 'container') {
-              // TODO: impliment implicit
+              let obj = types[el.type].elements
+              let elements = Object.keys(obj)
+              elements.forEach((e, i) => {
+                let type = obj[e].type
+                o[type] = true
+              })
             }
-            else if (types[el.type] && !o[types[el.type].type]) {
+            if (types[el.type] && !o[types[el.type].type]) {
               return o[types[el.type].type] = true
             }
           }
         })
-        elem.forEach(el => {
-          content += `${types[el.type].type}${elem[elem.length-1] !== el ? ',\n' : ''}`
+        let alreadyUsed = {}
+        elem.forEach((el, index) => {
+          if (types[el.type].type === 'container') {
+            let obj = types[el.type].elements
+            let elements = Object.keys(obj)
+            elements = elements.filter(e => {
+              if (!alreadyUsed[obj[e].type])
+                return alreadyUsed[obj[e].type] = true
+            })
+            elements.forEach((e, i) => {
+              let type = obj[e].type
+              content += `${type}${i < elements.length - 1 || index < elem.length - 1 ? ',\n' : ''}`
+            })
+          }
+          else {
+            let type = types[el.type].type
+            if (!alreadyUsed[type]) {
+              alreadyUsed[type] = true
+              content += `${type}${index < elem.length - 1 ? ',\n' : ''}`
+            }
+          }
         })
         return new Handlebars.SafeString(content)
       })

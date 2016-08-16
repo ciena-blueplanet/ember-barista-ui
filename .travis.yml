@@ -11,11 +11,10 @@ before_script:
   - sleep 3 # give xvfb some time to start
 before_install:
 - npm install -g coveralls
-- apt-get install wine
 install:
 - npm install
 - bower install
-- ember electron:package --overwrite
+- ember electron:package --platform=darwin --arch=x64 --overwrite
 - for i in electron-builds/*/; do zip -r "${i%/}.zip" "$i"; done
 after_success:
 - sed -i -- 's/SF:ember-barista-ui\/\(.*\)/SF:addon\/\1.js/' coverage/lcov.info && rm -f coverage/lcov.info--
