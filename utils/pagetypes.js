@@ -1,29 +1,29 @@
 module.exports = {
-  'text field': {
+  'Text Field': {
     type: 'fillable',
     properties: [
 
     ]
   },
-  'button': {
+  'Button': {
     type: 'clickable',
     properties: [
 
     ]
   },
-  'page': {
+  'Page': {
       type: 'visitable',
       properties: [
 
       ]
   },
-  'link': {
+  'Link': {
     type: 'fillable',
     properties: [
 
     ]
   },
-  'list record': {
+  'List Record': {
     type: 'container',
     'user-record-toggle': {
       type: 'clickable',

@@ -6,7 +6,6 @@
  * @param S          - string.js
  * @param fs         - node filesystem
  * @param types      - exec sync
- * @param types      - list of types to translate to ember-cli-page-object
  * @param package    - package.json
  * @return util
  */
@@ -46,12 +45,11 @@
 
           let name = S(el.label.toLowerCase()).dasherize().s
           if (el.type) {
-            let type = el.type.toLowerCase().trim()
-            if (types[type].type === 'container') {
+            if (types[el.type].type === 'container') {
 
             }
-            else if (types[type]) {
-              content += `${S(name).camelize().s}: ${types[type].type}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
+            else if (types[el.type]) {
+              content += `${S(name).camelize().s}: ${types[el.type].type}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
             }
           }
         })
@@ -74,19 +72,17 @@
         let o = {}
         elem = Object.keys(elem).map(e => elem[e])
         elem = elem.filter(el => {
-          if (el['type']) {
-            let type = el['type'].toLowerCase()
-            if (types[type].type === 'container') {
+          if (el.type) {
+            if (types[el.type].type === 'container') {
               // TODO: impliment implicit
             }
-            else if (types[type] && !o[types[type].type]) {
-              return o[types[type].type] = true
+            else if (types[el.type] && !o[types[el.type].type]) {
+              return o[types[el.type].type] = true
             }
           }
         })
         elem.forEach(el => {
-          let type = el['type'].toLowerCase()
-          content += `${types[type].type}${elem[elem.length-1] !== el ? ',\n' : ''}`
+          content += `${types[el.type].type}${elem[elem.length-1] !== el ? ',\n' : ''}`
         })
         return new Handlebars.SafeString(content)
       })

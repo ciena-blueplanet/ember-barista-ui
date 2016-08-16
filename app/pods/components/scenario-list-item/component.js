@@ -23,7 +23,7 @@ export default Component.extend({
       test['content'] = e.replace(/"([^"]*)"close/g, '"$1"')
     },
     tributeReplaced (e) {
-      let v = $(e.detail).data('value')
+      let v = $(e.originalEvent.detail).data('value')
       let el = this.get('elements').find(function (e) {
         return e.label === v;
       })

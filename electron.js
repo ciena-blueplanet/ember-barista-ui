@@ -6,6 +6,7 @@ const path = require('path')
 const barista = require('./barista')
 const fs = require('fs')
 const exec = require('child_process').exec
+const types = require('./utils/pagetypes')
 const {
   ipcMain
 } = electron
@@ -51,9 +52,15 @@ app.on('ready', function onReady () {
   process.on('uncaughtException', function (err) {
     console.log(`Exception: ${err}`)
   })
-  ipcMain.on('publish', function (event, scenarios) {
+  ipcMain.on('get-types', (event) => {
+    event.sender.send('types', types)
+    event.returnValue = types
+  })
+  ipcMain.on('publish', (event, scenarios) => {
     console.log(JSON.stringify(scenarios))
-    barista.generate(scenarios).then(function (content) {
+    barista.generate({
+      name: 'Test Name'
+    }, scenarios).then(function (content) {
       dialog.showSaveDialog(function (file) {
         if (!file) return
         fs.writeFile(file, content, function (err) {
