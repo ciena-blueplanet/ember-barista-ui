@@ -1,5 +1,5 @@
 language: node_js
-sudo: false
+sudo: true
 node_js:
 - '5.3'
 branches:
@@ -11,9 +11,12 @@ before_script:
   - sleep 3 # give xvfb some time to start
 before_install:
 - npm install -g coveralls
+- apt-get install wine
 install:
 - npm install
 - bower install
+- ember electron:package --overwrite
+- for i in electron-builds/*/; do zip -r "${i%/}.zip" "$i"; done
 after_success:
 - sed -i -- 's/SF:ember-barista-ui\/\(.*\)/SF:addon\/\1.js/' coverage/lcov.info && rm -f coverage/lcov.info--
 - cat coverage/lcov.info | coveralls
@@ -29,14 +32,15 @@ env:
   global:
     secure: GEdNyKvV+cmFWlcdbf3arjxwPzxQAo1VoOvORmP7HaEazsea9Q9n1hkRfDHL5DfjLmOw+LeqjlBfAxEDqtxKwpzE4oIRNeYm/E5lYGOUeyw7olD1ATBMiPPK05taXpGAGv/LWPinvY373yDAubt/hDASg/ZbYWYTHBWyBESHFCxoQDyTinQ4gKRVyNAx5r3RdWhxj4y3ul70Pn7z40x7ORkW3dimo0IRAGSeoV4Ba+Ws9eFDxhnEGJfdS59/R9putGRLM78SZERzfnleL9C6thGDhFrguJzXx1j1zbpTNVH++N+ECU64SIx1iAEflaSLSKCy/MRAuEXOXIX13zlhBShteotP8sEEpiQ5c4C5dbnf1NreEB7nNUwmP808tPbjYqC2SF9xd12UrTz4yMKeqxUiYQycQdiKRCdcaS5jJnam+TBFoCJjRDUUbwh+TYLsYffuzbVjJRwCE7KIiz02VYvEjLmfhwi01nxsW2xEbpnO3O/o1DKIiY8diEFZP0kJ3my+N+kWf3Nc6Z29RT8P+G3ulrIt/QHXwP+vyZUS6+J0gudIY2RtZx9247+VFgu67mDeOTslkNjsQOmFnxmR3FvDni0DRdAIktxRHWU/8KNNVx1RVLAwfoqyAyDGBYVsEdw6K/+RSV1wnqo9SmRoeDE0cjwxLL6SghmIXae0tDk=
 deploy:
-  provider: npm
-  email: npm.ciena@gmail.com
+  provider: releases
+  api_key: $AUTH_TOKEN
+  file:
+    - "electron-builds/ember-barista-ui-darwin-x64.zip"
+    - "electron-builds/ember-barista-ui-linux-ia32.zip"
+    - "electron-builds/ember-barista-ui-win32-ia32.zip"
   skip_cleanup: true
-  api_key:
-    secure: HQOIwwgNroYD4Mai/nEdvqLdRdfLPzJdmpPPt6lYxJDrKKXRL9cS9ie3/fqGxbv09q+RGwuoW/hWMHpnfywY8cTDycqRAx0V4c9seBNdM8Rn1IkVj3CJ7URCoKwQPH+0+FPX78GR4/IZ2Au2TC/AG5Vo21LQJ+HHkep3uzJyXCCcpy3OeD7QLlIUIICbkYN6nkNUzlwr2uD+g58YEIF5GjuYJMvQKOXC7luj7PIKE/khmoViKwnhHdZgvbue1AcgAKmi3xwwpSXHvtCXWqtD1nVMFh9XdFL1BJI8GI+Y3+1rRrve2ZS48dMWgiWJFOjApVFpzw7sidKQLg4qUlsK0VdSdDPptSFRv2yFyh6omW6O5scqe308jsRh+NBfljjPA3GVSvqM0JbqrYl2Y+JFB/ZlGGOULDWkuy2AwWgoeyxnynYTxzRWxD1uQEqdmi45p4US28Vjun8t5jKVTv/UR4wo5i1ox3o3fxUMAmIbWXKcB66qlxwTF3EadgmAV3cbFbKqjypSNoosEm4335LggA92EHbD+sMinAcqrV3RmibgPQz52n6Zj5G7DaVNNIjfMqYF1cejw5hdMYoMmq3e4UCQtT2xdn21m4DZuDSHSt2+JPib2k7Ts0vPVGZoabfSub7uKhzwNTOJXhT9KooFOZ8J6/KDsQOpM1vtxUnruJc=
   on:
-    branch: master
-    tags: false
+    tags: true
 notifications:
   slack:
     secure: vyREr+3QuRrPPiCsSHqdnU+rMwAiEoqQWXcriHGHsfUya4fO+kPZHgMqfa9DZrV2f7J9OjHwMddrNgr9QRzIvze3SzFhmWmhYH0a+CMAp1MZa8LEt933Fw3VX/8HiRmnB7EddaYB4PrdZeoqxAztEDyRpDAy6kniz4OCtkEUW9u19tv3fYxHgXHMOD6KFGUxjh2OTHLB7YjmItGAVqUR52V+nhFfgban+VA6qfrSJxakBopUbGgUhLb4PfnHug/AgLCDOZVbe4zE4LjEdfs/ZH6SsMBm2yyRU+HBRfVOxKaNBYlkrSg+kIpq7pBqvwYNsoSaFQWAoDsXmyRaNr3klN+t0jU9t1fmvZVlULiTEuAcFtt7kKH5y4W3BPh/g8XT9ziZaCXh0D0h+ywZO2HVz0fVcRw0JCCFUo/knRKmDwnUeM77owe891Ka80/B3oaawXrppuCXC3tyn/sudPAwL8AHglHdUh0d8vjwi+WMQP3r+KtWFyPvioXXTgVL9v/mIEWeyrgxiO63zf/I/Z0gaQV+njMUfnBPEpY5H2p+pwxWVkYNPICD3Wsxn6d4J/pTnNVuU7dHMPL88FSJtozFqQOTPJOukFxo5tRKryX4OYfTrqecF7/96xnNt9MqLSqCHlDRpHcIA9ZUy+NRl0EV4pDwlTmzL6oahvEfA+QkjWg=
