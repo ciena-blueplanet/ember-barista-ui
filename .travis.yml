@@ -35,8 +35,6 @@ deploy:
   api_key: $AUTH_TOKEN
   file:
     - "electron-builds/ember-barista-ui-darwin-x64.zip"
-    - "electron-builds/ember-barista-ui-linux-ia32.zip"
-    - "electron-builds/ember-barista-ui-win32-ia32.zip"
   skip_cleanup: true
   on:
     tags: true
