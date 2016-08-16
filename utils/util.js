@@ -6,7 +6,6 @@
  * @param S          - string.js
  * @param fs         - node filesystem
  * @param types      - exec sync
- * @param types      - list of types to translate to ember-cli-page-object
  * @param package    - package.json
  * @return util
  */
@@ -42,16 +41,22 @@
       Handlebars.registerHelper('page', function (elem, options) {
         let content = ''
         elem = Object.keys(elem).map(e =>elem[e])
-        elem.forEach(el => {
+        elem.forEach( (el, index) => {
 
           let name = S(el.label.toLowerCase()).dasherize().s
           if (el.type) {
-            let type = el.type.toLowerCase().trim()
-            if (types[type].type === 'container') {
+            if (types[el.type].type === 'container') {
+              let obj = types[el.type].elements
+              let elements = Object.keys(obj)
+              elements.forEach((e, i) => {
+                let type = obj[e].type
+                let label = S(e).dasherize()
+                content += `${label.camelize().s}: ${type}(hook('${label.s}'))${i < elements.length - 1 || index < elem.length -1 ? ',\n' : ''}`
+              })
 
             }
-            else if (types[type]) {
-              content += `${S(name).camelize().s}: ${types[type].type}(hook('${name}'))${elem[elem.length-1] !== el ? ',\n' : ''}`
+            else if (types[el.type]) {
+              content += `${S(name).camelize().s}: ${types[el.type].type}(hook('${name}'))${index < elem.length -1 ? ',\n' : ''}`
             }
           }
         })
@@ -61,10 +66,19 @@
         let content = ''
 
         elem = Object.keys(elem).map(e => elem[e])
-        elem.forEach(el => {
+        elem.forEach((el, index) => {
           let name = S(el.label.toLowerCase()).dasherize().s
-
-          content += `${S(name).camelize().s}${elem[elem.length-1] !== el ? ',\n' : ''}`
+          if (types[el.type].type === 'container') {
+            let obj = types[el.type].elements
+            let elements = Object.keys(obj)
+            elements.forEach((e, i) => {
+              let type = obj[e].type
+              let label = S(e).dasherize()
+              content += `${label.camelize().s}${i < elements.length - 1 || index < elem.length -1 ? ',\n' : ''}`
+            })
+          } else {
+            content += `${S(name).camelize().s}${index < elem.length -1 ? ',\n' : ''}`
+          }
         })
         return new Handlebars.SafeString(content)
 
@@ -74,19 +88,41 @@
         let o = {}
         elem = Object.keys(elem).map(e => elem[e])
         elem = elem.filter(el => {
-          if (el['type']) {
-            let type = el['type'].toLowerCase()
-            if (types[type].type === 'container') {
-              // TODO: impliment implicit
+          if (el.type) {
+            if (types[el.type].type === 'container') {
+              let obj = types[el.type].elements
+              let elements = Object.keys(obj)
+              elements.forEach((e, i) => {
+                let type = obj[e].type
+                o[type] = true
+              })
             }
-            else if (types[type] && !o[types[type].type]) {
-              return o[types[type].type] = true
+            if (types[el.type] && !o[types[el.type].type]) {
+              return o[types[el.type].type] = true
             }
           }
         })
-        elem.forEach(el => {
-          let type = el['type'].toLowerCase()
-          content += `${types[type].type}${elem[elem.length-1] !== el ? ',\n' : ''}`
+        let alreadyUsed = {}
+        elem.forEach((el, index) => {
+          if (types[el.type].type === 'container') {
+            let obj = types[el.type].elements
+            let elements = Object.keys(obj)
+            elements = elements.filter(e => {
+              if (!alreadyUsed[obj[e].type])
+                return alreadyUsed[obj[e].type] = true
+            })
+            elements.forEach((e, i) => {
+              let type = obj[e].type
+              content += `${type}${i < elements.length - 1 || index < elem.length - 1 ? ',\n' : ''}`
+            })
+          }
+          else {
+            let type = types[el.type].type
+            if (!alreadyUsed[type]) {
+              alreadyUsed[type] = true
+              content += `${type}${index < elem.length - 1 ? ',\n' : ''}`
+            }
+          }
         })
         return new Handlebars.SafeString(content)
       })

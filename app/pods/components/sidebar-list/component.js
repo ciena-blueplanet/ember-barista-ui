@@ -5,16 +5,19 @@ const {
   run
 } = Ember
 
+const {
+  ipcRenderer
+} = require('electron')
+
 export default Component.extend({
   tagName: 'div',
   classNames: ['content'],
-  types: [
-    'Text Field',
-    'Button',
-    'Link',
-    'Page',
-    'List Record'
-  ],
+  types: null,
+  init () {
+    this._super(...arguments)
+    let types = ipcRenderer.sendSync('get-types')
+    this.set('types', Object.keys(types))
+  },
   actions: {
     updateElement (element, type, value) {
       this.set('elements', Object.assign([], this.get('elements')))

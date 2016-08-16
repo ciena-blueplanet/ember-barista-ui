@@ -68,10 +68,10 @@ export default Controller.extend({
       if (!this.get('els').contains(e[0]))
         this.get('els').pushObject(e[0])
     },
-    publish () {
+    publish (scenarios) {
       ipcRenderer.send(
         'publish',
-        JSON.parse(JSON.stringify(this.get('scenarios')))
+        JSON.parse(JSON.stringify(scenarios))
       )
     },
     add () {

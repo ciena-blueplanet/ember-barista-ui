@@ -5,17 +5,16 @@
  */
 ;(function (utils) {
   module.exports = {
-    generate (scenarios) {
+    generate (config, scenarios) {
       utils.init()
-      let name = 'Testing Name'
       let elements = {}
-      scenarios.forEach(function (e) {
+      scenarios.forEach(e => {
         Object.assign(elements, e.elements)
       })
       return utils.compile('suite', {
-        title: name,
-        dasherized: utils.S(name.toLowerCase()).dasherize().s,
-        camelized: name,
+        title: config.name,
+        dasherized: utils.S(config.name.toLowerCase()).dasherize().s,
+        camelized: config.name,
         elements,
         scenarios,
         hasElements: !!Object.keys(elements).length
