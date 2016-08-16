@@ -1,0 +1,16 @@
+approve_by_comment: true
+approve_regex: ^(Approved|:\+1:)
+extends: ui
+reset_on_push: true
+reviewers:
+  members:
+  - job13er
+  - psbanka
+  - sandersky
+  - cstolli
+  - agonza40
+  - rajcoss
+  - sophypal
+  - sglanzer
+  - rox163
+  required: 1
