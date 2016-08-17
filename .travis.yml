@@ -37,8 +37,6 @@ deploy:
   file:
     - "electron-builds/ember-barista-ui-darwin-x64.zip"
   skip_cleanup: true
-  on:
-    tags: true
 notifications:
   slack:
     secure: vyREr+3QuRrPPiCsSHqdnU+rMwAiEoqQWXcriHGHsfUya4fO+kPZHgMqfa9DZrV2f7J9OjHwMddrNgr9QRzIvze3SzFhmWmhYH0a+CMAp1MZa8LEt933Fw3VX/8HiRmnB7EddaYB4PrdZeoqxAztEDyRpDAy6kniz4OCtkEUW9u19tv3fYxHgXHMOD6KFGUxjh2OTHLB7YjmItGAVqUR52V+nhFfgban+VA6qfrSJxakBopUbGgUhLb4PfnHug/AgLCDOZVbe4zE4LjEdfs/ZH6SsMBm2yyRU+HBRfVOxKaNBYlkrSg+kIpq7pBqvwYNsoSaFQWAoDsXmyRaNr3klN+t0jU9t1fmvZVlULiTEuAcFtt7kKH5y4W3BPh/g8XT9ziZaCXh0D0h+ywZO2HVz0fVcRw0JCCFUo/knRKmDwnUeM77owe891Ka80/B3oaawXrppuCXC3tyn/sudPAwL8AHglHdUh0d8vjwi+WMQP3r+KtWFyPvioXXTgVL9v/mIEWeyrgxiO63zf/I/Z0gaQV+njMUfnBPEpY5H2p+pwxWVkYNPICD3Wsxn6d4J/pTnNVuU7dHMPL88FSJtozFqQOTPJOukFxo5tRKryX4OYfTrqecF7/96xnNt9MqLSqCHlDRpHcIA9ZUy+NRl0EV4pDwlTmzL6oahvEfA+QkjWg=
