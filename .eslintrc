@@ -1,6 +1,45 @@
 {
-  "extends": ["frost-standard"],
+  "extends": ["standard"],
+  "parser": "babel-eslint",
   "globals": {
     "CSS": true
+  },
+  "plugins": ["mocha"],
+  "rules": {
+    "camelcase": 2,
+    "max-len": [2, 120, 4, {
+      "ignoreComments": true,
+      "ignoreUrls": true
+    }],
+    "mocha/handle-done-callback": 2,
+    "mocha/no-exclusive-tests": 2,
+    "mocha/no-global-tests": 2,
+    "mocha/no-pending-tests": 2,
+    "mocha/no-skipped-tests": 1,
+    "valid-jsdoc": [
+      2,
+      {
+        "prefer": {
+          "virtual": "abstract",
+          "extends": "augments",
+          "constructor": "class",
+          "const": "constant",
+          "defaultvalue": "default",
+          "desc": "description",
+          "host": "external",
+          "fileoverview": "file",
+          "overview": "file",
+          "emits": "fires",
+          "func": "function",
+          "method": "function",
+          "var": "member",
+          "arg": "param",
+          "argument": "param",
+          "return": "returns",
+          "exception": "throws"
+        },
+        "requireReturn": false
+      }
+    ]
   }
 }
