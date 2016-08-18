@@ -1,10 +1,10 @@
-import Ember from 'ember';
+import Ember from 'ember'
 const {
   Component
-} = Ember;
+} = Ember
 
 export default Component.extend({
   didInsertElement () {
     this.$('.ember-text-field').focus()
   }
-});
+})

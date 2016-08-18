@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 const {
-  Component
-} = Ember;
+  Component,
+  $
+} = Ember
 
 export default Component.extend({
   tagName: 'ul',
@@ -10,8 +11,8 @@ export default Component.extend({
   id: 'slide-out',
   attributeBindings: ['id'],
   didInsertElement () {
-    $(".button-collapse").sideNav({
+    $('.button-collapse').sideNav({
       edge: 'right'
-    });
+    })
   }
-});
+})

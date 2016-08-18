@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 const {
   Component
@@ -20,4 +20,4 @@ export default Component.extend({
       'List Record': 'list'
     }[t]
   })
-});
+})

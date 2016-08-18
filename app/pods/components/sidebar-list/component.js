@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 const {
-  Component,
-  run
+  Component
 } = Ember
 
 const {
@@ -37,8 +36,8 @@ export default Component.extend({
     delete (elements, el) {
       this.set('elements', elements.removeObject(el))
     },
-    reorderItems(elements, dragged) {
+    reorderItems (elements, dragged) {
       this.set('elements', elements)
-   }
+    }
   }
-});
+})

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Component.extend({
   tagName: 'li',
@@ -7,8 +7,8 @@ export default Ember.Component.extend({
     'collection-item'
   ],
   didInsertElement () {
-    $('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    this.$('.collapsible').collapsible({
+      accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     })
   },
   actions: {
@@ -27,4 +27,4 @@ export default Ember.Component.extend({
       })
     }
   }
-});
+})

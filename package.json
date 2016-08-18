@@ -66,14 +66,11 @@
     "ember-truth-helpers": "1.2.0",
     "eslint": "^3.1.1",
     "eslint-config-frost-standard": "^3.0.0",
-    "github-release": "^0.2.0",
-    "gulp": "^3.9.1",
     "loader.js": "^4.0.0",
     "lodash-es": "4.14.1",
     "redux": "3.5.2",
     "redux-thunk": "2.1.0",
-    "svg4everybody": "2.1.0",
-    "zip-folder": "^1.0.0"
+    "svg4everybody": "2.1.0"
   },
   "main": "electron.js",
   "ember-electron": {

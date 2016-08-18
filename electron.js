@@ -64,8 +64,9 @@ app.on('ready', function onReady () {
       dialog.showSaveDialog(function (file) {
         if (!file) return
         fs.writeFile(file, content, function (err) {
-          if (!err)
+          if (!err) {
             exec(`open ${file}`)
+          }
         })
       })
     })

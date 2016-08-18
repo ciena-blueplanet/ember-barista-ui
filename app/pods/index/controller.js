@@ -3,8 +3,9 @@ import menu from '../../utils/menu'
 
 const {
   Controller,
-  run
+  $
 } = Ember
+
 const {
   ipcRenderer
 } = require('electron')
@@ -64,9 +65,10 @@ export default Controller.extend({
       })
     },
     change (e) {
-      Materialize.toast(`Selected ${e[0].label}`, 4000)
-      if (!this.get('els').contains(e[0]))
+      window.Materialize.toast(`Selected ${e[0].label}`, 4000)
+      if (!this.get('els').contains(e[0])) {
         this.get('els').pushObject(e[0])
+      }
     },
     publish (scenarios) {
       ipcRenderer.send(

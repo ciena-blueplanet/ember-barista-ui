@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 export default Ember.Component.extend({
   id: 'editElement',
@@ -10,10 +10,11 @@ export default Ember.Component.extend({
   ],
   actions: {
     add (value) {
-      if (value)
+      if (value) {
         this.get('el.properties').pushObject({
           value: ''
         })
+      }
     }
   }
-});
+})

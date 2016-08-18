@@ -1,9 +1,7 @@
-import Ember from 'ember';
-import ContentEditable from 'ember-content-editable/components/content-editable';
+import Ember from 'ember'
+import ContentEditable from 'ember-content-editable/components/content-editable'
 const {
-  Component,
-  run,
-  $
+  run
 } = Ember
 
 export default ContentEditable.extend({
@@ -29,16 +27,16 @@ export default ContentEditable.extend({
   },
   didInsertElement () {
     this.$().on('focus', function (e) {
-      e.stopPropagation();
+      e.stopPropagation()
     })
-    let tribute = new Tribute({
+    let tribute = new window.Tribute({
       values: this.get('content'),
       selectTemplate (item) {
         let v = item.original.value
         return `<div class='chip waves-effect waves-light' data-value="${v}" contenteditable='false'>` +
           `${v}` +
-          `<i class="close material-icons">close</i>` +
-          `</div>`
+          '<i class="close material-icons">close</i>' +
+          '</div>'
       }
     })
     tribute.attach(this.get('element'))
@@ -48,4 +46,4 @@ export default ContentEditable.extend({
       this.get('targetObject').send('tributeReplaced', e)
     })
   }
-});
+})

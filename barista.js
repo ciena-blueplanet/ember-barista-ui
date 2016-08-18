@@ -23,4 +23,4 @@
   }
 })(
   require('./utils/util')
-);
+)

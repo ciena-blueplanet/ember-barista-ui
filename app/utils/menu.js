@@ -14,7 +14,7 @@ const {
 export default Ember.Object.create({
   init () {
     const menu = new Menu()
-    menu.append(new MenuItem({label: 'MenuItem1', click() { console.log('item 1 clicked'); return false}}))
+    menu.append(new MenuItem({label: 'MenuItem1', click () { console.log('item 1 clicked'); return false }}))
     menu.append(new MenuItem({type: 'separator'}))
     menu.append(new MenuItem({label: 'MenuItem2', type: 'checkbox', checked: true}))
     run.schedule('afterRender', this, function () {
@@ -22,6 +22,6 @@ export default Ember.Object.create({
         e.preventDefault()
         menu.popup(remote.getCurrentWindow())
       }, false)
-    });
+    })
   }
 })

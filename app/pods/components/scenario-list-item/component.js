@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Ember from 'ember'
 
 const {
-  Component
+  Component,
+  $
 } = Ember
 
 export default Component.extend({
@@ -14,10 +15,11 @@ export default Component.extend({
   },
   actions: {
     add (value) {
-      if (value)
+      if (value) {
         this.get('test.properties').pushObject({
           value: ''
         })
+      }
     },
     focusOut (test, e) {
       test['content'] = e.replace(/"([^"]*)"close/g, '"$1"')
@@ -25,7 +27,7 @@ export default Component.extend({
     tributeReplaced (e) {
       let v = $(e.originalEvent.detail).data('value')
       let el = this.get('elements').find(function (e) {
-        return e.label === v;
+        return e.label === v
       })
       this.get('scenario.elements')[v] = el
     },
@@ -36,4 +38,4 @@ export default Component.extend({
       els.removeObject(el)
     }
   }
-});
+})
