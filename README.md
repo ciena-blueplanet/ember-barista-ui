@@ -1,11 +1,8 @@
 [ci-img]: https://img.shields.io/travis/ciena-blueplanet/ember-barista-ui.svg "Travis CI Build Status"
 [ci-url]: https://travis-ci.org/ciena-blueplanet/ember-barista-ui
-[cov-img]: https://img.shields.io/coveralls/ciena-blueplanet/ember-barista-ui.svg "Coveralls Code Coverage"
-[cov-url]: https://coveralls.io/github/ciena-blueplanet/ember-barista-ui
-[npm-img]: https://img.shields.io/npm/v/ember-barista-ui.svg "NPM Version"
-[npm-url]: https://www.npmjs.com/package/ember-barista-ui
+
 # ember-barista-ui
-[![Travis][ci-img]][ci-url] [![Code Climate](https://codeclimate.com/github/ciena-blueplanet/ember-barista-ui/badges/gpa.svg)](https://codeclimate.com/github/ciena-blueplanet/ember-barista-ui)
+[![Travis][ci-img]][ci-url] [![Code Climate](https://codeclimate.com/github/ciena-blueplanet/ember-barista-ui/badges/gpa.svg)](https://codeclimate.com/github/ciena-blueplanet/ember-barista-ui) [![Test Coverage](https://codeclimate.com/github/ciena-blueplanet/ember-barista-ui/badges/coverage.svg)](https://codeclimate.com/github/ciena-blueplanet/ember-barista-ui/coverage)
 
 
 This README outlines the details of collaborating on this Ember application.
