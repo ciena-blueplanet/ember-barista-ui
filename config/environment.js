@@ -49,8 +49,5 @@ module.exports = function (environment) {
     'img-src': "'self' data:",
     'media-src': "'self'"
   }
-  ENV['ember-cli-mirage'] = {
-    enabled: false
-  }
   return ENV
 }
