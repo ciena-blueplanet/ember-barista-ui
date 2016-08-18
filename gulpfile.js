@@ -1,8 +1,17 @@
-var gulp = require('gulp')
-gulp.task('deploy', function(){
-  var pkg = require('./package.json'),
-    release = require('github-release');
-
-  gulp.src('./electron-builds/ember-barista-ui-darwin-x64.zip')
-    .pipe(release(pkg));
-});
+;(function (gulp, pkg, release, zip, exec) {
+  gulp.task('deploy', function () {
+    var file = pkg.name + "-" + pkg.version ".zip"
+    exec('npm run compile', function (err, stdout, stderr) {
+      if(err) return;
+      gulp.src('./electron-builds/*')
+        .pipe(zip(file, {compress: true}))
+        .pipe(release(pkg))
+    })
+  })
+})(
+  require('gulp'),
+  require('./package.json'),
+  require('github-release'),
+  require('gulp-zip'),
+  require('child_process').exec
+)
