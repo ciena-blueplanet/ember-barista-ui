@@ -1,6 +1,6 @@
 {
   "name": "ember-barista-ui",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Small description for ember-barista-ui goes here",
   "private": true,
   "directories": {
@@ -14,11 +14,14 @@
     "lint": "eslint *.js addon app blueprints config tests --fix",
     "compile": "ember electron:package --platform=darwin --arch=x64 --overwrite"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ciena-blueplanet/ember-barista-ui.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Seena",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -63,6 +66,8 @@
     "ember-truth-helpers": "1.2.0",
     "eslint": "^3.1.1",
     "eslint-config-frost-standard": "^3.0.0",
+    "github-release": "^0.2.0",
+    "gulp": "^3.9.1",
     "loader.js": "^4.0.0",
     "lodash-es": "4.14.1",
     "redux": "3.5.2",
