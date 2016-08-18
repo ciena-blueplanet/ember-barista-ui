@@ -29,7 +29,7 @@ export default Component.extend({
       })
       this.get('scenario.elements')[v] = el
     },
-    delete (el) {
+    delete () {
       this.get('scenario.tests').removeObject(this.get('test'))
     },
     removeObject (els, el) {

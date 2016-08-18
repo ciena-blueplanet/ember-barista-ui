@@ -35,8 +35,8 @@ export default ContentEditable.extend({
       values: this.get('content'),
       selectTemplate (item) {
         let v = item.original.value
-        return `<div class='chip' data-value="${v}" contenteditable='false'>` +
-          `"${v}"` +
+        return `<div class='chip waves-effect waves-light' data-value="${v}" contenteditable='false'>` +
+          `${v}` +
           `<i class="close material-icons">close</i>` +
           `</div>`
       }

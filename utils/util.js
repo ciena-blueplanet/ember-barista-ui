@@ -24,13 +24,16 @@
     init () {
       Handlebars.registerHelper('describe', function (elem, options) {
         let content = ''
+        let clean = function (e) {
+          return S(e.replace(/\r?\n|\r/g, '')).s
+        }
         elem.forEach(scenario => {
-          content += `describe('${S(scenario.name.replace(/\r?\n|\r/g, '')).humanize().s}', function () {\n`
+          content += `describe('${S(clean(scenario.name)).humanize().s}', function () {\n`
           scenario.tests.forEach(test => {
-            content += `it('${test.content.replace(/\r?\n|\r/g, '')}', function () {\n`
-            test.properties.forEach(prop => {
-              if(prop.value.trim())
-                content += `// TODO: ${prop.value}\n`
+            content += `\nit('${S(clean(test.content))}', function () {\n`
+            let props = test.properties.filter(prop => prop.value.trim())
+            props.forEach((prop, i) => {
+              content += `// TODO: ${prop.value}${i < props.length - 1 ? '\n' : ''}`
             })
             content += '\n})\n'
           })

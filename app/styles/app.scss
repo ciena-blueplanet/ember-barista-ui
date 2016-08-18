@@ -20,7 +20,8 @@ body > .ember-view > .row {
   -webkit-font-smoothing: antialiased;
 }
 .chip {
-      -webkit-user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
 }
 
 .button-collapse {
