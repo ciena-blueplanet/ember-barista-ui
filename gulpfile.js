@@ -1,11 +1,13 @@
 ;(function (gulp, pkg, release, zip, exec) {
-  gulp.task('deploy', function () {
-    var file = pkg.name + "-" + pkg.version ".zip"
+  gulp.task('deploy', function (callback) {
+    var file = pkg.name + "-" + pkg.version + ".zip"
     exec('npm run compile', function (err, stdout, stderr) {
-      if(err) return;
-      gulp.src('./electron-builds/*')
-        .pipe(zip(file, {compress: true}))
-        .pipe(release(pkg))
+      if (err)
+        callback(err);
+      else
+        gulp.src('./electron-builds/*')
+          .pipe(zip(file, {compress: true}))
+          .pipe(release(pkg))
     })
   })
 })(
