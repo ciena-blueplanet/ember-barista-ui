@@ -10,15 +10,14 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - sleep 3
 before_install:
-- npm install -g coveralls gulp
+- go install github-release
 install:
 - npm install
 - bower install
 after_success:
-- sed -i -- 's/SF:ember-barista-ui\/\(.*\)/SF:addon\/\1.js/' coverage/lcov.info &&
-  rm -f coverage/lcov.info--
-- cat coverage/lcov.info | coveralls
-- gulp deploy
+- npm run compile
+- for i in electron-builds/*/; do zip -r "${i%/}.zip" "$i"; done;
+- github-release upload --user srowhani --repo ember-barista-ui --tag $(node -p -e "require('./package.json').version") --name "ember-barista-ui-darwin-x64" --file electron-builds/ember-barista-ui-darwin-x64.zip
 addons:
   apt:
     sources:
