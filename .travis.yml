@@ -19,8 +19,8 @@ install:
 after_success:
 - npm run compile
 - for i in electron-builds/*/; do zip -r "${i%/}.zip" "$i"; done;
-- github-release release --user srowhani --repo ember-barista-ui --tag v$(node -p -e "require('./package.json').version") --name $(node -p -e "require('./package.json').version") --description "Built by Travis CI" --pre-release
-- github-release upload --user srowhani --repo ember-barista-ui --tag $(node -p -e "require('./package.json').version") --name "ember-barista-ui-darwin-x64" --file electron-builds/ember-barista-ui-darwin-x64.zip
+- github-release release --user ciena-blueplanet --repo ember-barista-ui --tag v$(node -p -e "require('./package.json').version") --name $(node -p -e "require('./package.json').version") --description "Built by Travis CI" --pre-release
+- github-release upload --user ciena-blueplanet --repo ember-barista-ui --tag $(node -p -e "require('./package.json').version") --name "ember-barista-ui-darwin-x64" --file electron-builds/ember-barista-ui-darwin-x64.zip
 addons:
   apt:
     sources:
