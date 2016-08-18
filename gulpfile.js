@@ -7,7 +7,7 @@
       console.log('Running compile')
       exec(zipCmd, function (err, stdout, stderr) {
         console.log('Running zip')
-        gulp.src('./electron-builds/*.zip')
+        gulp.src('./electron-builds/ember-barista-ui-darwin-x64.zip')
           .pipe(release(pkg))
         callback()
       })
