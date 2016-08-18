@@ -5,7 +5,7 @@
 [npm-img]: https://img.shields.io/npm/v/ember-barista-ui.svg "NPM Version"
 [npm-url]: https://www.npmjs.com/package/ember-barista-ui
 # ember-barista-ui
-[![Travis][ci-img]][ci-url] [![Coveralls][cov-img]][cov-url] [![NPM][npm-img]][npm-url]
+[![Travis][ci-img]][ci-url] [![Code Climate](https://codeclimate.com/github/ciena-blueplanet/ember-barista-ui/badges/gpa.svg)](https://codeclimate.com/github/ciena-blueplanet/ember-barista-ui)
 
 
 This README outlines the details of collaborating on this Ember application.
