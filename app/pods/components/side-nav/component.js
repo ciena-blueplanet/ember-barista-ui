@@ -2,6 +2,7 @@ import Ember from 'ember'
 
 const {
   Component,
+  run,
   $
 } = Ember
 
@@ -11,8 +12,12 @@ export default Component.extend({
   id: 'slide-out',
   attributeBindings: ['id'],
   didInsertElement () {
-    $('.button-collapse').sideNav({
-      edge: 'right'
+    this._super(...arguments)
+    run.schedule('sync', () => {
+      let collapse = $('.button-collapse')
+      collapse.sideNav({
+        edge: 'right'
+      })
     })
   }
 })

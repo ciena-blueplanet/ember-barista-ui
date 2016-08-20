@@ -5,7 +5,7 @@ var options = {
   filter: '//.*ember-barista-ui/.*/',
   antifilter: '//.*(tests|template).*/',
   loaderExclusions: [],
-  enableCoverage: true,
+  enableCoverage: false,
   cliOptions: {
     reporters: ['lcov'],
     autostart: true

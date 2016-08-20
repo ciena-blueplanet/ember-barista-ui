@@ -3,6 +3,8 @@ import menu from '../../utils/menu'
 
 const {
   Controller,
+  computed,
+  A,
   $
 } = Ember
 
@@ -11,6 +13,8 @@ const {
 } = require('electron')
 
 export default Controller.extend({
+  elements: null,
+  types: null,
   init () {
     this._super(...arguments)
     menu.init()
@@ -21,7 +25,7 @@ export default Controller.extend({
       elements: {},
       tests: [{
         content: '',
-        properties: Ember.A([{
+        properties: A([{
           value: ''
         }])
       }]
@@ -56,12 +60,11 @@ export default Controller.extend({
       label: 'About'
     }
   ],
-  elements: Ember.computed.alias('model.elements'),
   actions: {
     addScenario () {
       this.get('scenarios').pushObject({
         name: 'New Scenario',
-        elements: Ember.A()
+        elements: A()
       })
     },
     change (e) {
@@ -81,7 +84,7 @@ export default Controller.extend({
         name: '',
         tests: [{
           content: '',
-          properties: Ember.A([{
+          properties: A([{
             value: ''
           }])
         }],

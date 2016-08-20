@@ -1,14 +1,22 @@
 import Ember from 'ember'
 
-export default Ember.Component.extend({
+const {
+  Component,
+  run
+} = Ember;
+
+export default Component.extend({
   tagName: 'li',
   classNames: [
     'scenario',
     'collection-item'
   ],
   didInsertElement () {
-    this.$('.collapsible').collapsible({
-      accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    this._super(...arguments)
+    run.schedule('sync', this, () => {
+      this.$('.collapsible').collapsible({
+        accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+      })
     })
   },
   actions: {

@@ -1,10 +1,14 @@
 import Ember from 'ember'
 const {
-  Component
+  Component,
+  run
 } = Ember
 
 export default Component.extend({
   didInsertElement () {
-    this.$('.ember-text-field').focus()
+    this._super(...arguments)
+    run.schedule('sync', this, () => {
+      this.$('.ember-text-field').focus()
+    })
   }
 })

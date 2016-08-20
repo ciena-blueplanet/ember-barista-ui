@@ -1,25 +1,19 @@
 import Ember from 'ember'
 
 const {
-  Component
+  Component,
+  A
 } = Ember
-
-const {
-  ipcRenderer
-} = require('electron')
 
 export default Component.extend({
   tagName: 'div',
   classNames: ['content'],
-  types: null,
-  init () {
-    this._super(...arguments)
-    let types = ipcRenderer.sendSync('get-types')
-    this.set('types', Object.keys(types))
-  },
+  types: A(),
   actions: {
     updateElement (element, type, value) {
-      this.set('elements', Object.assign([], this.get('elements')))
+      if (value.trim()) {
+        this.set('elements', Object.assign([], this.get('elements')))
+      }
     },
     add (elements) {
       elements.pushObject(Ember.Object.create({

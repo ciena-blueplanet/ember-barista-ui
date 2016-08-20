@@ -2,23 +2,30 @@ import Ember from 'ember'
 
 const {
   Component,
-  $
+  $,
+  run
 } = Ember
 
 export default Component.extend({
   tagName: 'li',
   classNames: ['scenario-list-item'],
   didInsertElement () {
-    this.$('.view_list').on('click', function (e) {
-      $(e.target).parent().find('.collapsible-header').click()
+    this._super(...arguments)
+    run.schedule('sync', this, () => {
+      this.$('.view_list').on('click', function (e) {
+        $(e.target).parent().find('.collapsible-header').click()
+      })
     })
   },
   actions: {
     add (value) {
       if (value) {
-        this.get('test.properties').pushObject({
-          value: ''
-        })
+        let props = this.get('test.properties')
+        if (props) {
+          props.pushObject({
+            value: ''
+          })
+        }
       }
     },
     focusOut (test, e) {

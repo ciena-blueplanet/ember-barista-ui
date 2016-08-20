@@ -20,7 +20,7 @@ app.on('ready', function onReady () {
   delete mainWindow.module
 
   if (process.env.EMBER_ENV === 'test') {
-    mainWindow.loadURL(`'file://${__dirname}/index.html`)
+    mainWindow.loadURL(`file://${__dirname}/index.html`)
   } else {
     mainWindow.loadURL(`file://${__dirname}'/dist/index.html`)
   }

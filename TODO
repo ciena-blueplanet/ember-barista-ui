@@ -1,0 +1,12 @@
+- gist file export
+  - Option to save, or open from gist.
+  - Menu bar 'load from'
+- github repo integration
+  - .barista file with json configuration describing components
+  - ex. md-input maps to type fillable.
+- Save elements to a database.
+- live file preview
+  - On any page property change or interaction, ipc call publish.
+  - On success refresh the file preview view.
+    - Notify user
+  - On error, make no changes
