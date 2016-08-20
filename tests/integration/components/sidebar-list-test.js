@@ -1,11 +1,10 @@
 /* jshint expr:true */
-import { expect } from 'chai';
+import { expect } from 'chai'
 import {
   describeComponent,
-  it,
-  beforeEach
-} from 'ember-mocha';
-import hbs from 'htmlbars-inline-precompile';
+  it
+} from 'ember-mocha'
+import hbs from 'htmlbars-inline-precompile'
 
 describeComponent(
   'sidebar-list',
@@ -13,8 +12,8 @@ describeComponent(
   {
     integration: true
   },
-  function() {
-    it('renders', function() {
+  function () {
+    it('renders', function () {
       // Set any properties with this.set('myProperty', 'value');
       // Handle any actions with this.on('myAction', function(val) { ... });
       // Template block usage:
@@ -24,8 +23,8 @@ describeComponent(
       //   {{/sidebar-list}}
       // `);
 
-      this.render(hbs`{{sidebar-list}}`);
-      expect(this.$()).to.have.length(1);
-    });
+      this.render(hbs`{{sidebar-list}}`)
+      expect(this.$()).to.have.length(1)
+    })
   }
-);
+)

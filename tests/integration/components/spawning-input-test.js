@@ -1,10 +1,10 @@
 /* jshint expr:true */
-import { expect } from 'chai';
+import { expect } from 'chai'
 import {
   describeComponent,
   it
-} from 'ember-mocha';
-import hbs from 'htmlbars-inline-precompile';
+} from 'ember-mocha'
+import hbs from 'htmlbars-inline-precompile'
 
 describeComponent(
   'spawning-input',
@@ -12,13 +12,13 @@ describeComponent(
   {
     integration: true
   },
-  function() {
-    it('renders', function() {
-      this.set('onEnter', function  () {})
+  function () {
+    it('renders', function () {
+      this.set('onEnter', function () {})
       this.set('onChange', function () {})
 
-      this.render(hbs`{{spawning-input onEnter=onEnter onChange=onChange}}`);
-      expect(this.$()).to.have.length(1);
-    });
+      this.render(hbs`{{spawning-input onEnter=onEnter onChange=onChange}}`)
+      expect(this.$()).to.have.length(1)
+    })
   }
-);
+)

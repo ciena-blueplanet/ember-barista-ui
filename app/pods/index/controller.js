@@ -3,7 +3,6 @@ import menu from '../../utils/menu'
 
 const {
   Controller,
-  computed,
   A,
   $
 } = Ember

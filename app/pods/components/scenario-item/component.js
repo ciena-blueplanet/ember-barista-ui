@@ -3,7 +3,7 @@ import Ember from 'ember'
 const {
   Component,
   run
-} = Ember;
+} = Ember
 
 export default Component.extend({
   tagName: 'li',

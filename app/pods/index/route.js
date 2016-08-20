@@ -6,8 +6,6 @@ const {
   A
 } = Ember
 
-
-
 export default Route.extend({
   model () {
     const {
