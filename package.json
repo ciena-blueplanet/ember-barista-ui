@@ -67,7 +67,7 @@
     "ember-sortable": "1.8.2",
     "ember-truth-helpers": "1.2.0",
     "eslint": "^3.1.1",
-    "eslint-config-frost-standard": "^3.0.0",
+    "eslint-config-frost-standard": "^4.0.0",
     "loader.js": "^4.0.0",
     "lodash-es": "4.14.1",
     "redux": "3.5.2",
