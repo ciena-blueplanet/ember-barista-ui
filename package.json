@@ -12,7 +12,9 @@
     "start": "ember server",
     "test": "ember test --test-page='tests/index.html?coverage=true'",
     "lint": "eslint *.js addon app blueprints config tests --fix",
-    "compile": "ember electron:package --platform=darwin --arch=x64 --overwrite"
+    "compile": "ember electron:package --platform=darwin --arch=x64 --overwrite",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -124,6 +126,8 @@
     "js-beautify": "^1.6.3",
     "chalk": "^1.1.3",
     "handlebars": "^4.0.5",
-    "string": "^3.3.1"
-  }
+    "string": "^3.3.1",
+    "snyk": "^1.18.1"
+  },
+  "snyk": true
 }
