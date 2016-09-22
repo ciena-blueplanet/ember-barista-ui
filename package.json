@@ -54,7 +54,7 @@
     "ember-content-editable": "0.9.0",
     "ember-data": "^2.3.0",
     "ember-disable-proxy-controllers": "^1.0.1",
-    "ember-electron": "1.8.0",
+    "ember-electron": "1.8.5",
     "ember-export-application-global": "^1.0.4",
     "ember-frost-core": "0.25.4",
     "ember-hook": "1.2.1",
