@@ -63,7 +63,7 @@
     "ember-lodash-shim": "1.0.1",
     "ember-material-design-icons-shim": "0.1.9",
     "ember-materialize-shim": "git://github.com/levanto-financial/ember-materialize-shim.git#bd11c52b946a6c6a7345941ae6783ed54b0a1425",
-    "ember-one-way-controls": "1.0.0",
+    "ember-one-way-controls": "1.1.2",
     "ember-redux": "1.6.0",
     "ember-resolver": "^2.0.3",
     "ember-sortable": "1.8.2",
